@@ -1,0 +1,19 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+numpy = "*"
+networkx = "*"
+requests = "*"
+shapely = "*"
+folium = "==0.12.1"
+pandas = "*"
+scikit-learn = "*"
+matplotlib = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.7"
