@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name='PyTrack',
+    name='PyTrack-lib',
     version='1.0.0',
     package_dir={"": "pytrack"},
     packages=setuptools.find_packages(where="pytrack"),
@@ -17,7 +17,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD-3-Clause-Clear",
+        "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
     ]
 )

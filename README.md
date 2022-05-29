@@ -5,6 +5,7 @@
 -----------------
 
 # PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction
+[![PyPI Latest Release](https://img.shields.io/pypi/v/PyTrack-lib)](https://pypi.org/project/PyTrack-lib/)
 [![License](https://img.shields.io/pypi/l/pandas.svg)](LICENSE)
 
 ## What is it?
@@ -31,7 +32,7 @@ conda install PyTrack
 
 ```sh
 # or PyPI
-pip install PyTrack
+pip install PyTrack-lib
 ```
 ## Documentation
 Checkout the official [documentation]().
