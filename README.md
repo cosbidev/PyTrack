@@ -1,5 +1,5 @@
 <h1 align="center">
-<img src="logo/pytracklogo.svg" width="300">
+<img src="https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/pytracklogo.svg" width="300">
 </h1><br>
 
 -----------------
