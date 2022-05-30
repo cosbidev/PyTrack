@@ -8,7 +8,7 @@ with open("requirements.txt") as f:
 
 setuptools.setup(
     name='PyTrack-lib',
-    version='1.0.7',
+    version='1.0.2',
     packages=setuptools.find_packages(),
     namespace_packages=['pytrack'],
     url='https://github.com/cosbidev/PyTrack',
@@ -22,6 +22,11 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
+        "Topic :: Scientific/Engineering :: GIS",
+        "Topic :: Scientific/Engineering :: Visualization",
+        "Topic :: Scientific/Engineering :: Physics",
+        "Topic :: Scientific/Engineering :: Mathematics",
+        "Topic :: Scientific/Engineering :: Information Analysis"
     ],
     install_requires=INSTALL_REQUIRES
 )
