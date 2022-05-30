@@ -1,7 +1,14 @@
 import setuptools
+import os
+
+lib_folder = os.path.dirname(os.path.realpath(__file__))
+requirement_path = lib_folder + '/requirements.txt'
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
+
+with open(requirement_path) as f:
+    INSTALL_REQUIRES = [line.strip() for line in f.readlines()]
 
 setuptools.setup(
     name='PyTrack-lib',
@@ -19,5 +26,6 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
-    ]
+    ],
+    install_reqs=INSTALL_REQUIRES
 )
