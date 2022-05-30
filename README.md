@@ -7,7 +7,8 @@
 # PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction
 [![PyPI Latest Release](https://img.shields.io/pypi/v/PyTrack-lib)](https://pypi.org/project/PyTrack-lib/)
 [![License](https://img.shields.io/pypi/l/pandas.svg)](LICENSE)
-
+[![docs](https://img.shields.io/readthedocs/pytrack-lib)](https://pytrack-lib.readthedocs.io/en/latest)
+[![PyPI downloads](https://img.shields.io/pypi/dm/pytrack-lib?label=PyPI%20downloads)](https://pypi.org/project/PyTrack-lib/)
 ## What is it?
 **PyTrack** is a Python package that integrate the recorded GPS coordinates with data provided by the open-source OpenStreetMap (OSM). 
 PyTrack can serve the intelligent transport research, e.g. to develop virtual simulation environments for the first training phase in self-driving vehicle applications, to reconstruct the video of a vehicle’s route by exploiting available data and without equipping it with camera sensors, to update the urban road network, and so on.
