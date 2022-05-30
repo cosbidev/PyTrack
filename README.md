@@ -37,7 +37,7 @@ pip install PyTrack-lib
 ```
 *For mac M1 users, installation via conda is recommended.*
 ## Documentation
-Checkout the official [documentation]().
+Checkout the official [documentation](https://pytrack-lib.readthedocs.io/en/latest).
 
 ## Contributing to PyTrack
 All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
