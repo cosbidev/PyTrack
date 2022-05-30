@@ -1,8 +1,10 @@
 import setuptools
+import os
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+print(os.getcwd())
 with open("requirements.txt") as f:
     INSTALL_REQUIRES = [line.strip() for line in f.readlines()]
 
@@ -30,3 +32,4 @@ setuptools.setup(
     ],
     install_requires=INSTALL_REQUIRES
 )
+
