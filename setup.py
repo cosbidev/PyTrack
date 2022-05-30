@@ -1,12 +1,21 @@
 import setuptools
 import os
 
+
+def strip_comments(l):
+    return l.split('#', 1)[0].strip()
+
+
+def reqs(*f):
+    return list(filter(None, [strip_comments(l) for l in open(
+        os.path.join(os.getcwd(), *f)).readlines()]))
+
+
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-print(os.getcwd())
-with open("requirements.txt") as f:
-    INSTALL_REQUIRES = [line.strip() for line in f.readlines()]
+# with open("requirements.txt") as f:
+#    INSTALL_REQUIRES = [line.strip() for line in f.readlines()]
 
 setuptools.setup(
     name='PyTrack-lib',
@@ -30,6 +39,5 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Scientific/Engineering :: Information Analysis"
     ],
-    install_requires=INSTALL_REQUIRES
+    install_requires=reqs('requirements.txt')
 )
-
