@@ -34,7 +34,8 @@ pip install PyTrack-lib
 
 ## Documentation
 Checkout the official [documentation](https://pytrack-lib.readthedocs.io/en/latest).
-
+The official documentation is currently under construction.
+Besides, [here](https://github.com/cosbidev/PyTrack/tree/main/examples) you can see some examples of the application of the library.
 ## Contributing to PyTrack
 All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
 
