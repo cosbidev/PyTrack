@@ -3,6 +3,11 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
+
+.. image:: https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/pytracklogo.svg
+  :width: 400
+  :alt: Alternative text
+
 PyTrack |version|
 ===================================
 **PyTrack** is a Python package that integrate the recorded GPS coordinates with data provided by the open-source OpenStreetMap (OSM).
