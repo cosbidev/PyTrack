@@ -2,11 +2,8 @@
    sphinx-quickstart on Mon May 30 20:04:37 2022.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
-
-
-.. image:: https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/pytracklogo.svg
-  :width: 400
-  :alt: Alternative text
+.. image:: https://github.com/cosbidev/PyTrack/blob/main/logo/pytracklogo.svg
+    :alt: my-picture1
 
 PyTrack |version|
 ===================================
