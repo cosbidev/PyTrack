@@ -8,13 +8,13 @@ def strip_comments(l):
 
 def reqs(*f):
     return list(filter(None, [strip_comments(l) for l in open(
-        os.path.join(*f)).readlines()]))
+        os.path.join(os.getcwd(), *f)).readlines()]))
 
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-print(os.getcwd(), "????????????????????")
+print(os.getcwd(), *f), "????????????????????")
 
 setuptools.setup(
     name='PyTrack-lib',
