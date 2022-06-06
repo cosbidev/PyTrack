@@ -14,6 +14,8 @@ def reqs(*f):
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
+print(os.getcwd(), "????????????????????")
+
 setuptools.setup(
     name='PyTrack-lib',
     version='1.0.12',
