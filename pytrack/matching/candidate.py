@@ -61,16 +61,6 @@ def interpolate_graph(G, dist=1):
         nodes_toadd.extend([(get_unique_number(lon, lat),
                              {"x": lon, "y": lat, "geometry": Point(lon, lat)}) for lon, lat in XY])
 
-        """
-        # if not oneway:
-        #  G.remove_edge(v, u)
-        # uv_inv = [(get_unique_number(*u), get_unique_number(*v)) for u, v in zip(XY[:-len(XY):-1], XY[-2::-1])]
-        #  uv_inv = [(v, u) for u, v in uv[::-1]]
-        # edges_interp_inv = [LineString([u, v]) for u, v in zip(XY[:-len(XY):-1], XY[-2::-1])] 
-        #  data_inv_edges = [(lambda d: d.update({"geometry": LineString([u, v])}) or d)(data.copy()) \
-        #  for u, v in zip(XY[:-len(XY):-1], XY[-2::-1])]
-        #  edges_toadd.extend([(*uv, data) for uv, data in zip(uv_inv, data_inv_edges)])
-        """
     G.add_edges_from(edges_toadd)
     G.add_nodes_from(nodes_toadd)
 
