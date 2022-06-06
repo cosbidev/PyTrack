@@ -8,7 +8,7 @@ def strip_comments(l):
 
 def reqs(*f):
     return list(filter(None, [strip_comments(l) for l in open(
-        os.path.join(os.getcwd(), *f)).readlines()]))
+        os.path.join(*f)).readlines()]))
 
 
 with open("README.md", "r", encoding="utf-8") as fh:
@@ -36,5 +36,5 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Scientific/Engineering :: Information Analysis"
     ],
-    install_requires=reqs('requirements.txt')
+    install_requires=reqs('https://github.com/cosbidev/PyTrack/blob/main/requirements.txt')
 )
