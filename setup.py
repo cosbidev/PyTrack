@@ -36,5 +36,5 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Scientific/Engineering :: Information Analysis"
     ],
-    install_requires=reqs('https://github.com/cosbidev/PyTrack/blob/main/requirements.txt')
+    install_requires=reqs('./requirements.txt')
 )
