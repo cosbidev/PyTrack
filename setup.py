@@ -14,11 +14,11 @@ def reqs(*f):
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
-print(os.path.join(os.getcwd(), "./requirements.txt"), "???????????")
+print(os.path.join(os.getcwd(), "requirements.txt"), "???????????")
 
 setuptools.setup(
     name='PyTrack-lib',
-    version='1.0.12',
+    version='1.0.3',
     packages=setuptools.find_packages(),
     # namespace_packages=['pytrack'],
     url='https://github.com/cosbidev/PyTrack',
@@ -38,5 +38,5 @@ setuptools.setup(
         "Topic :: Scientific/Engineering :: Mathematics",
         "Topic :: Scientific/Engineering :: Information Analysis"
     ],
-    install_requires=reqs('./requirements.txt')
+    install_requires=reqs('requirements.txt')
 )
