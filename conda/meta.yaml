@@ -1,5 +1,5 @@
 {% set name = "PyTrack" %}
-{% set version = "1.0.2" %}
+{% set version = "1.0.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/cosbidev/PyTrack/archive/v{{ version }}.tar.gz
-  sha256: d4ee9bda66523f79c9118f15ed1eca5e7a714d36713c0dd6710083f2c7b34235
+  sha256: cda0a4d8f755a8d5aa0f321e322de2267930aa94b6209760428b064062e9e4e1
 
 build:
   noarch: python
@@ -19,19 +19,19 @@ requirements:
     - pip
     - python
   run:
-    - folium >=0.12.1.post1,==0.12.1.*
-    - python-graphviz >=3.0.0,==3.0.*
-    - matplotlib-base >=3.5.2,==3.5.*
-    - networkx >=2.8.2,==2.8.*
-    - numpy >=1.22.3,==1.22.*
-    - pandas >=1.4.2,==1.4.*
-    - pydot >=1.2.4,==1.2.*
-    - pyproj >=3.3.1,==3.3.*
+    - folium
+    - python-graphviz
+    - matplotlib-base
+    - networkx
+    - numpy
+    - pandas
+    - pydot
+    - pyproj
     - python
-    - requests >=2.27.1,==2.27.*
-    - scikit-learn >=1.1.1,==1.1.*
-    - setuptools >=62.3.2,==62.3.*
-    - shapely >=1.8.2,==1.8.*
+    - requests
+    - scikit-learn
+    - setuptools
+    - shapely
 
 test:
   imports:
