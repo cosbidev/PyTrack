@@ -32,7 +32,7 @@ https://github.com/cosbidev/PyTrack.
 PyTrack can be installed using*:
 ```sh
 # conda
-conda install -c mtortora pytrack 
+conda install pytrack 
 ```
 
 ```sh
