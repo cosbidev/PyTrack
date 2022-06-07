@@ -26,12 +26,16 @@ The following are the main features that PyTrack includes:
 The source code is currently hosted on GitHub at:
 https://github.com/cosbidev/PyTrack.
 PyTrack can be installed using*:
-
 ```sh
-# PyPI
-pip install PyTrack-lib
+# conda
+conda install -c mtortora pytrack 
 ```
 
+```sh
+# or PyPI
+pip install PyTrack-lib
+```
+**for Mac m1 users, it is recommended to use conda in order to be able to install all dependencies.*
 ## Documentation
 Checkout the official [documentation](https://pytrack-lib.readthedocs.io/en/latest).
 The official documentation is currently under construction.
