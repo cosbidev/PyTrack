@@ -14,7 +14,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.abspath('../..'))
-from pytrack import graph
+import pytrack
+print(os.getcwd())
 
 # -- Project information -----------------------------------------------------
 
