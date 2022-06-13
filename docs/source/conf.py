@@ -31,9 +31,29 @@ release = '1.0.3'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
+autoclass_content = "both"
+autosummary_generate = True
+autodoc_default_flags = [
+         # Make sure that any autodoc declarations show the right members
+         "members",
+         #"inherited-members",
+         "private-members",
+         "show-inheritance",
 ]
 
+extensions = ['sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.ifconfig',
+    'sphinx.ext.viewcode',
+	'sphinx.ext.autosummary',
+    'sphinx.ext.inheritance_diagram',
+    'sphinx_autodoc_typehints',
+    'sphinx.ext.intersphinx',
+    "sphinx.ext.napoleon",
+    "sphinx.ext.doctest"]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
