@@ -9,6 +9,4 @@ API
 .. toctree::
    :maxdepth: 2
 
-    graph.rst
-    analytics.rst
-    matching.rst
+    graph

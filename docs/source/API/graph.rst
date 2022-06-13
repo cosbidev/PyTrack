@@ -1,5 +1,5 @@
 Graph
 ========
 
-.. automodule:: pytrack.graph.graph.graph_from_bbox
+.. automodule:: graph.graph
     :members:
