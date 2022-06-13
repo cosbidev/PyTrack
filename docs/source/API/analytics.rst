@@ -1,6 +1,6 @@
 Analytics
 ========
 
-.. autoclass:: pytrack.analytics.plot
+.. autoclass:: pytrack.analytics.plot.Map
    :members:
 
