@@ -10,3 +10,4 @@ API
    :maxdepth: 2
 
    graph
+   analytics
