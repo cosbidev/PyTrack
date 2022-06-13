@@ -12,9 +12,9 @@
 #
 import os
 import sys
+
 sys.path.insert(0, os.path.abspath('../../'))
 import pytrack
-
 
 # -- Project information -----------------------------------------------------
 
@@ -25,7 +25,6 @@ author = 'Matteo Tortora'
 # The full version, including alpha/beta/rc tags
 release = '1.0.3'
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -34,26 +33,26 @@ release = '1.0.3'
 autoclass_content = "both"
 autosummary_generate = True
 autodoc_default_flags = [
-         # Make sure that any autodoc declarations show the right members
-         "members",
-         #"inherited-members",
-         "private-members",
-         "show-inheritance",
+    # Make sure that any autodoc declarations show the right members
+    "members",
+    # "inherited-members",
+    "private-members",
+    "show-inheritance",
 ]
 
 extensions = ['sphinx.ext.autodoc',
-    'sphinx.ext.doctest',
-    'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.mathjax',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.viewcode',
-	'sphinx.ext.autosummary',
-    'sphinx.ext.inheritance_diagram',
-    'sphinx_autodoc_typehints',
-    'sphinx.ext.intersphinx',
-    "sphinx.ext.napoleon",
-    "sphinx.ext.doctest"]
+              'sphinx.ext.doctest',
+              'sphinx.ext.todo',
+              'sphinx.ext.coverage',
+              'sphinx.ext.mathjax',
+              'sphinx.ext.ifconfig',
+              'sphinx.ext.viewcode',
+              'sphinx.ext.autosummary',
+              'sphinx.ext.inheritance_diagram',
+              'sphinx_autodoc_typehints',
+              'sphinx.ext.intersphinx',
+              "sphinx.ext.napoleon",
+              "sphinx.ext.doctest"]
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -64,7 +63,6 @@ master_doc = 'index'
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
-
 
 # -- Options for HTML output -------------------------------------------------
 
