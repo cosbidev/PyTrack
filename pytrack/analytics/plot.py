@@ -112,7 +112,9 @@ class Map(folium.Map):
     def add_graph(self, G, plot_nodes=False, edge_color="#3388ff", edge_width=3,
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
                   fill_opacity=1):
-
+        """
+        commenta
+        """
         edge_attr = dict()
         edge_attr["color"] = edge_color
         edge_attr["weight"] = edge_width
