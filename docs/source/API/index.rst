@@ -9,4 +9,4 @@ API
 .. toctree::
    :maxdepth: 2
 
-    graph.rst
+   graph
