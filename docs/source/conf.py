@@ -12,10 +12,13 @@
 #
 import os
 import sys
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath('../..'))
+# go up two levels from /docs/source to the package root
+sys.path.insert(0, str(Path().resolve().parent.parent))
+#sys.path.insert(0, os.path.abspath('../..'))
 import pytrack
-print(os.getcwd())
+print("CIIIIIIIIII", os.getcwd())
 
 # -- Project information -----------------------------------------------------
 
