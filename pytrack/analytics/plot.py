@@ -204,6 +204,8 @@ class Map(folium.Map):
 def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs):
     """Draw a Trellis graph
 
+    Parameters
+    ----------
     T : networkx graph
         A networkx Trellis graph (directed acyclic graph)
     figsize : (float, float) (default=[15.0, 12.0])
@@ -218,6 +220,10 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     kwargs : optional keywords arguments
         See networkx.draw_networkx_nodes(), networkx.draw_networkx_edges(), and
         networkx.draw_networkx_labels() for a description of optional keywords.
+
+    Returns
+    -------
+    Folium Map Object
     """
 
     valid_node_kwargs = signature(nx.draw_networkx_nodes).parameters.keys()
