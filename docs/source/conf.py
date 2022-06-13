@@ -18,8 +18,6 @@ from pathlib import Path
 sys.path.insert(0, str(Path().resolve().parent.parent))
 #sys.path.insert(0, os.path.abspath('../..'))
 import pytrack
-print("CIIIIIIIIII", os.getcwd())
-print(os.listdir(str(Path().resolve().parent.parent)))
 
 # -- Project information -----------------------------------------------------
 
