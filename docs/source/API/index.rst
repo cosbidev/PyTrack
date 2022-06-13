@@ -1,6 +1,6 @@
-.. _reference:
+.. _API:
 
-Reference
+API
 *********
 
    :Release: |release|
