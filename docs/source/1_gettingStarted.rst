@@ -9,6 +9,7 @@ Installation
 .. code-block:: shell
 
     pip install pytrack-lib
+
 or via *conda*:
 
 .. code-block:: shell
