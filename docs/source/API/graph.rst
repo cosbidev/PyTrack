@@ -1,5 +1,5 @@
 Graph
 ========
 
-.. automodule:: pytrack.graph
+.. automodule:: pytrack.graph.graph
     :members:

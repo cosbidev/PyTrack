@@ -1,7 +1,5 @@
 Matching
 ========
 
-.. autoclass:: pytrack.analytics.plot
+.. automodule:: pytrack.matching
     :members:
-
-    .. method::
