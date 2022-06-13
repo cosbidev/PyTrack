@@ -72,8 +72,8 @@ class Map(folium.Map):
 
     Notes
     -----
-    See https://github.com/python-visualization/folium/blob/551b2420150ab56b71dcf14c62e5f4b118caae32/folium/folium.py
-    #L69 for a more detailed description
+    See https://github.com/python-visualization/folium/blob/551b2420150ab56b71dcf14c62e5f4b118caae32/folium/folium.py#L69
+    for a more detailed description
 
     """
 
@@ -113,7 +113,12 @@ class Map(folium.Map):
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
                   fill_opacity=1):
         """
-        commenta
+
+        :param G:
+        :param fill_opacity:
+        :param edge_color:
+        :param plot_nodes:
+        :type edge_opacity: object
         """
         edge_attr = dict()
         edge_attr["color"] = edge_color
