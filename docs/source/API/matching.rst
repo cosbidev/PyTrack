@@ -1,5 +1,5 @@
 Matching
 ========
 
-.. automodule:: pytrack.matching
+.. automodule:: pytrack.matching.mpmatching_utils
     :members:
