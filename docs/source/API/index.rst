@@ -9,4 +9,6 @@ API
 .. toctree::
    :maxdepth: 2
 
-   analytics
+    graph
+    analytics
+    matching
