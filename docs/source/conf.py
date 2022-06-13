@@ -19,6 +19,7 @@ sys.path.insert(0, str(Path().resolve().parent.parent))
 #sys.path.insert(0, os.path.abspath('../..'))
 import pytrack
 print("CIIIIIIIIII", os.getcwd())
+print(str(Path().resolve().parent.parent))
 
 # -- Project information -----------------------------------------------------
 
