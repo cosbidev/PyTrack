@@ -220,14 +220,14 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     ----------
     T: networkx graph
         A networkx graph (directed acyclic graph)
-    figsize: (float, float) (default=[15.0, 12.0])
+    figsize: (float, float), default [15.0, 12.0]
         Width, height figure size tuple in inches
-    dpi: float (default=300.0)
+    dpi: float, default 300.0
         The resolution of the figure in dots-per-inch
-    node_size: scalar or array (default=500)
+    node_size: scalar or array, default=500
         Size of nodes.  If an array is specified it must be the
         same length as nodelist.
-    font_size: int (default=8 for nodes, 8 for edges)
+    font_size: int, default 8
         Font size for text labels
     kwargs: optional keywords arguments
         See networkx.draw_networkx_nodes(), networkx.draw_networkx_edges(),
@@ -235,8 +235,8 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
 
     Returns
     -------
-    matplotlib.pyplot Figure. See https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
-    for a more detailed description.
+    matplotlib.pyplot Figure. See https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure for a more
+    detailed description.
     """
 
     valid_node_kwargs = signature(nx.draw_networkx_nodes).parameters.keys()
