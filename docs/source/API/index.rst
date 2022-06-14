@@ -10,4 +10,5 @@ API
    :maxdepth: 2
 
    graph
+   matching
    analytics
