@@ -14,25 +14,25 @@ class Map(folium.Map):
 
     Parameters
     ----------
-    location: tuple or list (optional, default: None)
+    location: tuple or list, optional, default: None
         Latitude and Longitude of Map (Northing, Easting).
-    width: int or percentage string (optional, default: '100%')
+    width: int or percentage string, optional, default: '100%')
         Width of the map.
-    height: int or percentage string (optional, default: '100%')
+    height: int or percentage string, optional, default: '100%'
         Height of the map.
-    tiles: str (optional, default: 'OpenStreetMap')
+    tiles: str, optional, default: 'OpenStreetMap'
         Map tileset to use. Can choose from a list of built-in tiles,
         pass a custom URL or pass `None` to create a map without tiles.
         For more advanced tile layer options, use the `TileLayer` class.
-    min_zoom: int (optional, default: 0)
+    min_zoom: int, optional, default: 0
         Minimum allowed zoom level for the tile layer that is created.
-    max_zoom: int (optional, default: 18)
+    max_zoom: int, optional, default: 18
         Maximum allowed zoom level for the tile layer that is created.
-    zoom_start: int (optional, default 10)
+    zoom_start: int, optional, default 10
         Initial zoom level for the map.
-    attr: string (optional, default: None)
+    attr: string, optional, default: None
         Map tile attribution; only required if passing custom tile URL.
-    crs : str (optional, default: 'EPSG3857')
+    crs : str, optional, default: 'EPSG3857'
         Defines coordinate reference systems for projecting geographical points
         into pixel (screen) coordinates and back.
         You can use Leaflet's values :
@@ -47,22 +47,22 @@ class Map(folium.Map):
         x and y directly. May be used for maps of flat surfaces
         (e.g. game maps). Note that the y axis should still be inverted
         (going from bottom to top).
-    control_scale : bool (optional, default: False)
+    control_scale : bool, optional, default: False
         Whether to add a control scale on the map.
-    prefer_canvas : bool (optional, default: False)
+    prefer_canvas : bool, optional, default: False
         Forces Leaflet to use the Canvas back-end (if available) for
         vector layers instead of SVG. This can increase performance
         considerably in some cases (e.g. many thousands of circle
         markers on the map).
-    no_touch : bool (optional, default: False)
+    no_touch : bool, optional, default: False
         Forces Leaflet to not use touch events even if it detects them.
-    disable_3d : bool (optional, default: False)
+    disable_3d : bool, optional, default: False
         Forces Leaflet to not use hardware-accelerated CSS 3D
         transforms for positioning (which may cause glitches in some
         rare environments) even if they're supported.
-    zoom_control : bool (optional, default: True)
+    zoom_control : bool, optional, default: True
         Display zoom controls on the map.
-    **kwargs : keyword arguments (optional, default: no attributes)
+    **kwargs : keyword arguments, optional, default: no attributes
         Additional keyword arguments are passed to Leaflets Map class:
         https://leafletjs.com/reference-1.6.0.html#map
 
@@ -220,22 +220,21 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     ----------
     T: networkx.DiGraph()
         A directed acyclic graph
-    figsize: (float, float) (optional, default: [15.0, 12.0])
+    figsize: (float, float), optional, default: [15.0, 12.0]
         Width, height figure size tuple in inches, optional
-    dpi: float (optional, default: 300.0)
+    dpi: float, optional, default: 300.0
         The resolution of the figure in dots-per-inch
-    node_size: scalar or array (optional, default: 500)
+    node_size: scalar or array, optional, default: 500
         Size of nodes.  If an array is specified it must be the same length as nodelist.
-    font_size: int (optional, default: 8)
+    font_size: int, optional, default: 8
         Font size for text labels
-    kwargs: keyword arguments (optional, default: no attributes)
+    kwargs: keyword arguments, optional, default: no attributes
         See networkx.draw_networkx_nodes(), networkx.draw_networkx_edges(),
         networkx.draw_networkx_labels() and matplotlib.pyplot.figure() for a description of optional keywords.
 
     Returns
     -------
     trellis_diag: matplotlib.pyplot.Figure
-        See https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure for a more detailed description.
     """
 
     valid_node_kwargs = signature(nx.draw_networkx_nodes).parameters.keys()
