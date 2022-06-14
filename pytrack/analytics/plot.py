@@ -235,6 +235,8 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     Returns
     -------
     trellis_diag: matplotlib.pyplot.Figure
+        Graphical illustration of the Trellis diagram used in the Hidden Markov Model process to find the path that best
+        matches the actual GPS data
     """
 
     valid_node_kwargs = signature(nx.draw_networkx_nodes).parameters.keys()
