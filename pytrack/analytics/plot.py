@@ -112,7 +112,7 @@ class Map(folium.Map):
     def add_graph(self, G, plot_nodes=False, edge_color="#3388ff", edge_width=3,
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
                   fill_opacity=1):
-        """ Add to the ``folium.Map`` object a road network graph.
+        """ Add the road network graph created with ``pytrack.graph.graph.graph_from_bbox`` method
 
         Parameters
         ----------
@@ -172,7 +172,7 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def draw_candidates(self, candidates, radius):
-        """ Draw on the ``folium.Map`` object the candidate nodes of the HMM matcher
+        """ Draw the candidate nodes of the HMM matcher
 
         Parameters
         ----------
@@ -210,6 +210,17 @@ class Map(folium.Map):
         self.add_child(folium.LayerControl())
 
     def draw_path(self, G, trellis, predecessor):
+        """ Draw the map-matched path
+
+        Parameters
+        ----------
+        G: networkx.MultiDiGraph
+            Road network graph.
+        trellis: nx.DiGraph
+            Trellis DAG graph created with ``pytrack.matching.mpmatching_utils.create_trellis`` method
+        predecessor: dict
+            Predecessors' dictionary computed with ``pytrack.matching.mpmatching.viterbi_search`` method
+        """
 
         fg_matched = folium.FeatureGroup(name='Matched path', show=True, control=True)
         self.add_child(fg_matched)
