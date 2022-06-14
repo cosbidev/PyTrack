@@ -4,5 +4,5 @@ Analytics
 .. autoclass:: pytrack.analytics.plot.Map
    :members:
 
-.. automodule:: pytrack.analytics.plot.draw_trellis
+.. automodule:: pytrack.analytics.plot
    :members:
