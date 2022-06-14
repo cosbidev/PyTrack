@@ -218,7 +218,7 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
 
     Parameters
     ----------
-    T: networkx.DiGraph()
+    T: networkx.DiGraph
         A directed acyclic graph
     figsize: (float, float), optional, default: [15.0, 12.0]
         Width, height figure size tuple in inches, optional
