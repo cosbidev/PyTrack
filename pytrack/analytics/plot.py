@@ -10,7 +10,7 @@ from pytrack.matching import mpmatching_utils
 
 
 class Map(folium.Map):
-    """ Create a Map with Folium and Leaflet.js
+    """ This class extends the ``folium.Map`` to add functionality useful to represent graphs and road paths.
 
     Parameters
     ----------
@@ -112,18 +112,30 @@ class Map(folium.Map):
     def add_graph(self, G, plot_nodes=False, edge_color="#3388ff", edge_width=3,
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
                   fill_opacity=1):
-        """
+        """ Add to the ``folium.Map`` object a road network graph.
+
         Parameters
         ----------
-        G:
-        node_color:
+        G: networkx.MultiDiGraph
+            Road network graph.
+        plot_nodes: bool, optional, default: False
+            If true, it will show the vertices of the graph.
+        edge_color: str, optional, default: "#3388ff"
+            Colour of graph edges
+        edge_width: float, optional, default: 3
+            Width of graph edges
+        edge_opacity: float, optional, default: 1
+            Opacity of graph edges
+        radius: float, optional, default: 1.7
+            Radius of graph vertices
+        node_color: str, optional, default: "red"
             Colour of graph vertices
-        node_color:
-        radius:
-        fill_opacity:
-        edge_color:
-        plot_nodes:
-        edge_opacity: object
+        fill: bool, optional, default: True
+            Whether to fill the nodes with color. Set it to false to disable filling on the nodes.
+        fill_color: str or NoneType, default: None
+            Fill color. Defaults to the value of the color option.
+        fill_opacity: float, optional, default: 1
+            Fill opacity
         """
         edge_attr = dict()
         edge_attr["color"] = edge_color
@@ -135,9 +147,9 @@ class Map(folium.Map):
         node_attr["fill"] = fill
 
         if not fill_color:
-            node_attr["fill_color"] = node_color
+            node_attr["fill_color"] = fill_color
         else:
-            node_attr["fill_color"] = node_color
+            node_attr["fill_color"] = fill_color
         node_attr["fill_opacity"] = fill_opacity
 
         nodes, edges = utils.graph_to_gdfs(G)
@@ -160,11 +172,14 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def draw_candidates(self, candidates, radius):
-        """
+        """ Draw on the ``folium.Map`` object the candidate nodes of the HMM matcher
 
-        :param candidates:
-        :param radius:
-        :return:
+        Parameters
+        ----------
+        candidates: dict
+            Candidates' dictionary computed via ``pytrack.matching.candidate.get_candidates`` method
+        radius: float
+            Candidate search radius
         """
         fg_cands = folium.FeatureGroup(name='Candidates', show=True, control=True)
         fg_gps = folium.FeatureGroup(name="Actual GPS points", show=True, control=True)
@@ -214,7 +229,7 @@ class Map(folium.Map):
 
 
 def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs):
-    """ Draw a Trellis graph
+    """ Draw a trellis graph
 
     Parameters
     ----------
