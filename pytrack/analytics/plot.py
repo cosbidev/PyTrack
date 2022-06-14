@@ -221,12 +221,11 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     T: networkx graph
         A networkx graph (directed acyclic graph)
     figsize: (float, float), default [15.0, 12.0]
-        Width, height figure size tuple in inches
+        Width, height figure size tuple in inches, optional
     dpi: float, default 300.0
         The resolution of the figure in dots-per-inch
     node_size: scalar or array, default=500
-        Size of nodes.  If an array is specified it must be the
-        same length as nodelist.
+        Size of nodes.  If an array is specified it must be the same length as nodelist.
     font_size: int, default 8
         Font size for text labels
     kwargs: optional keywords arguments
