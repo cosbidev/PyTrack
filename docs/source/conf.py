@@ -62,6 +62,9 @@ templates_path = ['_templates']
 # The master toctree document.
 master_doc = 'index'
 
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None),
+                       "folium": ("https://python-visualization.github.io/folium/", None)}
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
