@@ -16,9 +16,9 @@ class Map(folium.Map):
     ----------
     location: tuple or list, default None
         Latitude and Longitude of Map (Northing, Easting).
-    width: pixel int or percentage string (default: '100%')
+    width: int or percentage string, default '100%'
         Width of the map.
-    height: pixel int or percentage string (default: '100%')
+    height: int or percentage string, default '100%'
         Height of the map.
     tiles: str, default 'OpenStreetMap'
         Map tileset to use. Can choose from a list of built-in tiles,
@@ -113,12 +113,17 @@ class Map(folium.Map):
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
                   fill_opacity=1):
         """
-
-        :param G:
-        :param fill_opacity:
-        :param edge_color:
-        :param plot_nodes:
-        :type edge_opacity: object
+        Parameters
+        ----------
+        G:
+        node_color:
+            Colour of graph vertices
+        node_color:
+        radius:
+        fill_opacity:
+        edge_color:
+        plot_nodes:
+        edge_opacity: object
         """
         edge_attr = dict()
         edge_attr["color"] = edge_color
@@ -155,6 +160,12 @@ class Map(folium.Map):
         folium.LayerControl().add_to(self)
 
     def draw_candidates(self, candidates, radius):
+        """
+
+        :param candidates:
+        :param radius:
+        :return:
+        """
         fg_cands = folium.FeatureGroup(name='Candidates', show=True, control=True)
         fg_gps = folium.FeatureGroup(name="Actual GPS points", show=True, control=True)
         self.add_child(fg_cands)
@@ -184,6 +195,7 @@ class Map(folium.Map):
         self.add_child(folium.LayerControl())
 
     def draw_path(self, G, trellis, predecessor):
+
         fg_matched = folium.FeatureGroup(name='Matched path', show=True, control=True)
         self.add_child(fg_matched)
 
@@ -207,7 +219,7 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     Parameters
     ----------
     T: networkx graph
-        A networkx Trellis graph (directed acyclic graph)
+        A networkx graph (directed acyclic graph)
     figsize: (float, float) (default=[15.0, 12.0])
         Width, height figure size tuple in inches
     dpi: float (default=300.0)
@@ -218,12 +230,13 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
     font_size: int (default=8 for nodes, 8 for edges)
         Font size for text labels
     kwargs: optional keywords arguments
-        See networkx.draw_networkx_nodes(), networkx.draw_networkx_edges(), and
-        networkx.draw_networkx_labels() for a description of optional keywords.
+        See networkx.draw_networkx_nodes(), networkx.draw_networkx_edges(),
+        networkx.draw_networkx_labels() and matplotlib.pyplot.figure() for a description of optional keywords.
 
     Returns
     -------
-    matplotlib.pyplot figure
+    matplotlib.pyplot Figure. See https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure
+    for a more detailed description.
     """
 
     valid_node_kwargs = signature(nx.draw_networkx_nodes).parameters.keys()
