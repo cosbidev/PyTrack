@@ -6,6 +6,24 @@ from pytrack.graph import distance, utils
 
 
 class Candidate:
+    """ Class to represent a candidate element.
+
+    Parameters
+    ----------
+    node_id: str
+        OSM node ID.
+    edge_osmid: str
+        OSM edge ID.
+    obs: tuple
+        Coordinate of actual gps points.
+    great_dist: float
+        Distance between candidate and actual GPS point.
+    coord: tuple
+        Candidate coordinate.
+    Returns
+    -------
+    Candidate object
+    """
     __slots__ = ["node_id", "edge_osmid", "obs", "great_dist", "coord"]
 
     def __init__(self, node_id, edge_osmid, obs, great_dist, coord):
@@ -17,16 +35,27 @@ class Candidate:
 
 
 def get_candidates(G, points, interp_dist=1, closest=True, radius=10):
-    """
-    G: networkx graph
-    x: float
-        longitude
-    y: float
-        latitude
-    distance: float
-        distance of interpolation
-    radius: float
-        radius of research
+    """ Extract candidate points for Hidden-Markov Model map-matching approach.
+
+    Parameters
+    ----------
+    G: networkx.MultiDiGraph
+        Street network graph.
+    points: list
+        The actual GPS points.
+    interp_dist: float, optional, default: 1
+        Step to interpolate the graph. The smaller the interp_dist, the greater the precision and the longer
+        the computational time.
+    closest: bool, optional, default: True
+        If true, only the closest point is considered for each edge.
+    radius: float, optional, default: 10
+        Radius of the search circle.
+    Returns
+    -------
+    G: networkx.MultiDiGraph
+        Street network graph.
+    results: dict
+        Results to be used for the map-matching algorithm.
     """
 
     G = G.copy()
@@ -78,6 +107,19 @@ def get_candidates(G, points, interp_dist=1, closest=True, radius=10):
 
 
 def elab_candidate_results(results, predecessor):
+    """ Elaborate results of ``candidate.get_candidates`` method.
+
+    Parameters
+    ----------
+    results: dict
+        Output of ``candidate.get_candidates`` method.
+    predecessor: dict
+        Output of ``mpmatching.viterbi_search`` method.
+    Returns
+    -------
+    results: dict
+        Elaborated results.
+    """
     results = results.copy()
     for key in list(results.keys())[:-1]:
         win_cand_idx = int(predecessor[str(key + 1)].split("_")[1])
