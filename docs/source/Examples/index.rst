@@ -8,6 +8,8 @@ Examples
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
-   ../../../examples/extract_graph
-   ../../../examples/map-matching
+
+   ../notebooks/extract_graph
+   ../notebooks/map-matching
