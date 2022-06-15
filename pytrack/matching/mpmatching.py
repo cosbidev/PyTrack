@@ -3,7 +3,27 @@ from collections import deque
 from . import mpmatching_utils
 
 
-def viterbi_search(G, trellis, start, target):
+def viterbi_search(G, trellis, start="start", target="target"):
+    """ Function to compute viterbi search and perform Hidden-Markov Model map-matching.
+
+    Parameters
+    ----------
+    G: networkx.MultiDiGraph
+        Street network graph.
+    trellis:
+    start: str, optional, default: "start"
+        Starting node.
+    target: str, optional, default: "target"
+        Target node.
+
+    Returns
+    -------
+    joint_prob: dict
+        Joint probability for each node.
+    predecessor: dict
+        Predecessor for each node.
+    """
+
     # Initialize joint probability for each node
     joint_prob = {}
     for u_name in trellis.nodes():
