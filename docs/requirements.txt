@@ -4,4 +4,5 @@ sphinx-rtd-theme==1.0.0
 pygments-style-monokailight==0.4
 nbsphinx==0.8.9
 ipython==8.4.0
+docutils==0.16
 -r ../requirements.txt
