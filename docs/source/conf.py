@@ -10,13 +10,11 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
 import sys
 from pathlib import Path
 
 # go up two levels from /docs/source to the package root
 sys.path.insert(0, str(Path().resolve().parent.parent))
-#sys.path.insert(0, os.path.abspath('../..'))
 import pytrack
 
 # -- Project information -----------------------------------------------------
