@@ -28,6 +28,7 @@ useful_tags_way = [
 
 def graph_from_bbox(north, south, west, east, simplify=True, network_type='drive', buffer_dist=0):
     """ Create a graph from OpenStreetMap within some bounding box.
+
     Parameters
     ----------
     north: float
@@ -63,6 +64,7 @@ def graph_from_bbox(north, south, west, east, simplify=True, network_type='drive
 
 def _to_simplify(segment):
     """ Method that determines whether a segment of the graph must be simplified.
+
     Parameters
     ----------
     segment: list
@@ -80,6 +82,7 @@ def _to_simplify(segment):
 
 def _simplification(G, response_json):
     """ Method that simplify a networkx graph.
+
     Parameters
     ----------
     G: networkx.MultiDiGraph
@@ -125,6 +128,7 @@ def _simplification(G, response_json):
 
 def _build_edge_attribute(G, segment, segment_attributes, is_oneway):
     """ Method that build the dictionary of attributes of a segment.
+
     Parameters
     ----------
     G: networkx.MultiDiGraph
@@ -157,6 +161,7 @@ def _build_edge_attribute(G, segment, segment_attributes, is_oneway):
 
 def _build_edge(G, segment, segment_attributes, is_oneway, reverse=False):
     """ Method that builds an edge of the network street graph.
+
     Parameters
     ----------
     G: networkx.MultiDiGraph
@@ -189,6 +194,7 @@ def _build_edge(G, segment, segment_attributes, is_oneway, reverse=False):
 
 def _split_at_values(nodes, junction):
     """ Method that creates a networkx.MultiDiGraph representing a network street graph.
+
     Parameters
     ----------
     nodes: list
@@ -207,6 +213,7 @@ def _split_at_values(nodes, junction):
 
 def create_graph(response_json):
     """ Method that creates a networkx.MultiDiGraph representing a network street graph.
+
     Parameters
     ----------
     response_json: json
@@ -242,6 +249,7 @@ def create_graph(response_json):
 
 def _oneway_path_values(path):
     """ Checks whether an OSM path is oneway.
+
     Parameters
     ----------
     path: dict
@@ -256,6 +264,7 @@ def _oneway_path_values(path):
 
 def _is_oneway(path, bidirectional):
     """ Checks whether an OSM path is oneway.
+
     Parameters
     ----------
     path: dict
@@ -279,6 +288,7 @@ def _is_oneway(path, bidirectional):
 
 def _is_reversed(path):
     """ Checks whether an OSM path is reversed.
+
     Parameters
     ----------
     path: dict
@@ -298,6 +308,7 @@ def _is_reversed(path):
 
 def add_edges(G, paths, bidirectional=False, all_oneway=False):
     """ Add OSM edges to a ``networkx.MultiDiGraph``.
+
     Parameters
     ----------
     G: networkx.MultiDiGraph
@@ -332,6 +343,7 @@ def add_edges(G, paths, bidirectional=False, all_oneway=False):
 
 def convert_edge(element):
     """ Convert an OSM edge into an edge to construct a street network graph.
+
     Parameters
     ----------
     element: dict
@@ -352,6 +364,7 @@ def convert_edge(element):
 
 def convert_node(element):
     """ Convert an OSM node into a node to construct a street network graph.
+
     Parameters
     ----------
     element: dict
@@ -373,6 +386,7 @@ def convert_node(element):
 
 def get_nodes_edges(response_json):
     """ Extract nodes and paths from the OpenStreetMap query response.
+
     Parameters
     ----------
     response_json: json
