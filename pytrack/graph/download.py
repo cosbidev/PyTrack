@@ -3,6 +3,7 @@ import requests
 
 def get_filters(network_type='drive'):
     """ Get the filters with which to interrogate the OpenStreetMao API service.
+
     Parameters
     ----------
     network_type: str, optional, default: 'drive'
@@ -24,6 +25,7 @@ def get_filters(network_type='drive'):
 
 def osm_download(bbox, network_type=None):
     """ Get the OpenStreetMap response.
+
     Parameters
     ----------
     bbox: tuple
