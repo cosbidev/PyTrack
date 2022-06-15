@@ -6,7 +6,6 @@ candidate
 .. automodule:: pytrack.matching.candidate
    :members:
    :undoc-members:
-   :show-inheritance:
 
 matcher
 -------------
