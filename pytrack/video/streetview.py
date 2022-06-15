@@ -6,6 +6,33 @@ import requests
 
 
 def extract_streetview_pic(point, api_key, size="640x640", heading=90, pitch=-10):
+    """ Extract street view pic.
+
+    Parameters
+    ----------
+    point: tuple
+        The lat/lng value of desired location.
+    api_key: str
+        Street View Static API key. It allows you to monitor your application's API usage in the Google Cloud Console,
+        and ensures that Google can contact you about your application if necessary.
+    size: str, optional, default: "640x640"
+        Specifies the output size of the image in pixels.
+    heading: int, optional, default: 90
+        indicates the compass heading of the camera. Accepted values are from 0 to 360 (both values indicating North,
+        with 90 indicating East, and 180 South). If no heading is specified, a value will be calculated that directs
+        the camera towards the specified location, from the point at which the closest photograph was taken.
+    pitch: int, optional, default: -10
+        specifies the up or down angle of the camera relative to the Street View vehicle. This is often, but not always,
+        flat horizontal. Positive values angle the camera up (with 90 degrees indicating straight up); negative values
+        angle the camera down (with -90 indicating straight down).
+
+    Returns
+    -------
+    pic: request.content
+        Image get from Street View.
+    meta: json
+        Data about Street View panoramas.
+    """
     meta_base = 'https://maps.googleapis.com/maps/api/streetview/metadata?'
     pic_base = 'https://maps.googleapis.com/maps/api/streetview?'
 
@@ -46,6 +73,19 @@ def extract_streetview_pic(point, api_key, size="640x640", heading=90, pitch=-10
 
 
 def save_streetview(pic, meta, folder_path):
+    """ Save streetview pic and metadata in the desired path.
+
+    Parameters
+    ----------
+    pic: request.content
+        Image get from Street View.
+    meta: json
+        Data about Street View panoramas.
+    folder_path: str
+        Desired path of the folder where save pic and metadata.
+
+    :return: The function does not return anything. It directly saves the pic and metadata at the position indicated in folder_path.
+    """
     Path(os.path.join(folder_path)).mkdir(parents=True, exist_ok=True)
 
     with open(os.path.join(folder_path, 'pic.png'), 'wb') as file:
