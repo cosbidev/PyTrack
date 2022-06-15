@@ -81,7 +81,7 @@ def _simplification(G, response_json):
 
 def _build_edge_attribute(G, segment, segment_attributes, is_oneway):
     attribute = segment_attributes.copy()
-    #attribute = {k: segment_attributes[k] for k in useful_tags_way if k in segment_attributes}
+    # attribute = {k: segment_attributes[k] for k in useful_tags_way if k in segment_attributes}
 
     attribute["geometry"] = LineString([Point((G.nodes[node]["x"],
                                                G.nodes[node]["y"])) for node in segment])

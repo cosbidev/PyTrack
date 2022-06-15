@@ -1,8 +1,10 @@
+import itertools
 import math
 
-import matplotlib.pyplot as plt
 import networkx as nx
+
 from pytrack.graph import distance
+from pytrack.matching import candidate
 
 SIGMA_Z = 4.07
 BETA = 20
@@ -18,7 +20,7 @@ def emission_prob(u):
 
 
 # A empirical distribution
-def transition_prob(G, u, v):   
+def transition_prob(G, u, v):
     c = 1 / BETA
 
     if u.great_dist and v.great_dist:
@@ -30,29 +32,19 @@ def transition_prob(G, u, v):
         return 1
 
 
-class Candidate:
-    __slots__ = ["node_id", "edge_osmid", "obs", "great_dist", "coord"]
-
-    def __init__(self, node_id, edge_osmid, obs, great_dist, coord):
-        self.node_id = node_id
-        self.edge_osmid = edge_osmid
-        self.obs = obs
-        self.great_dist = great_dist
-        self.coord = coord
-
-
 def create_trellis(results):
     G = nx.DiGraph()
 
     prev_nodes = ["start"]
-    G.add_node("start", candidate=Candidate("start", None, None, None, None))
-    G.add_node("target", candidate=Candidate("start", None, None, None, None))
+    G.add_node("start", candidate=candidate.Candidate("start", None, None, None, None))
+    G.add_node("target", candidate=candidate.Candidate("start", None, None, None, None))
 
     for idx, item in results.items():
         obs = item["observation"]
-        nodes, data_node = zip(*[(f"{idx}_{j}", {"candidate": Candidate(node_id, edge_osmid, obs, dist, cand)})
-                                 for j, (node_id, edge_osmid, dist, cand) in
-                                 enumerate(zip(item["osmid"], item["edge_osmid"], item["dists"], item["candidates"]))])
+        nodes, data_node = zip(
+            *[(f"{idx}_{j}", {"candidate": candidate.Candidate(node_id, edge_osmid, obs, dist, cand)})
+              for j, (node_id, edge_osmid, dist, cand) in
+              enumerate(zip(item["osmid"], item["edge_osmid"], item["dists"], item["candidates"]))])
         edges = [(u, v) for u in prev_nodes for v in nodes]
 
         G.add_nodes_from(zip(nodes, data_node))
@@ -64,10 +56,12 @@ def create_trellis(results):
     return G
 
 
-def draw_trellis(T, figsize=(15, 12), dpi=300, node_size=500, font_size=8):
-    plt.figure(1, figsize=figsize, dpi=dpi)
+def create_path(G, trellis, predecessor):
+    u, v = list(zip(*[(u, v) for v, u in predecessor.items()][2:]))
+    path = [(u, v) for u, v in zip(u, u[1:])]
 
-    pos = nx.drawing.nx_pydot.graphviz_layout(T, prog='dot', root='start')
-    trellis_diag = nx.draw_networkx(T, pos, node_size=node_size, font_size=font_size)
-
-    return trellis_diag
+    path_elab = [node for u, v in path for node in nx.shortest_path(G, trellis.nodes[u]["candidate"].node_id,
+                                                                    trellis.nodes[v]["candidate"].node_id,
+                                                                    weight='length')]
+    path_elab = [k for k, g in itertools.groupby(path_elab)]
+    return path_elab

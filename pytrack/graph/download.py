@@ -2,6 +2,16 @@ import requests
 
 
 def get_filters(network_type='drive'):
+    """ Get the
+    Parameters
+    ----------
+    network_type: str, optional, default: 'drive'
+
+    Returns
+    -------
+    osm_filters: dict
+
+    """
     osm_filters = dict()
 
     osm_filters['drive'] = ('["highway"]["area"!~"yes"]["access"!~"private"]'

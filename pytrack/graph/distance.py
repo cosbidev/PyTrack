@@ -1,6 +1,11 @@
-import numpy as np
 import networkx as nx
+import numpy as np
+from pyproj import Geod
+from shapely.geometry import Point, LineString
 
+from pytrack.graph import utils
+
+geod = Geod(ellps="WGS84")
 EARTH_RADIUS_M = 6_371_009  # distance in meters
 
 
@@ -48,3 +53,50 @@ def add_edge_lengths(G, precision=3):
     dists[np.isnan(dists)] = 0
     nx.set_edge_attributes(G, values=dict(zip(uvk, dists)), name='length')
     return G
+
+
+def interpolate_graph(G, dist=1):
+    G = G.copy()
+
+    edges_toadd = []
+    nodes_toadd = []
+
+    for edge in list(G.edges(data=True)):
+        u, v, data = edge
+        # oneway = data["oneway"]
+        geom = data["geometry"]
+        data["length"] = dist
+
+        G.remove_edge(u, v)
+
+        XY = [xy for xy in _interpolate_geom(geom, dist=dist)]
+
+        # generate nodes id
+        uv = [(utils.get_unique_number(*u), utils.get_unique_number(*v)) for u, v in zip(XY[:-1], XY[1:])]
+        # edges_interp = [LineString([u, v]) for u, v in zip(XY[:-1], XY[1:])]
+        data_edges = [(lambda d: d.update({"geometry": LineString([u, v])}) or d)(data.copy()) for u, v in
+                      zip(XY[:-1], XY[1:])]
+        edges_toadd.extend([(*uv, data) for uv, data in zip(uv, data_edges)])
+
+        nodes_toadd.extend([(utils.get_unique_number(lon, lat),
+                             {"x": lon, "y": lat, "geometry": Point(lon, lat)}) for lon, lat in XY])
+
+    G.add_edges_from(edges_toadd)
+    G.add_nodes_from(nodes_toadd)
+
+    G.remove_nodes_from(list(nx.isolates(G)))
+    G.interpolation = True
+    return G
+
+
+def _interpolate_geom(geom, dist=1):
+    # TODO: use geospatial interpolation see: npts method in https://pyproj4.github.io/pyproj/stable/api/geod.html
+    num_vert = max(round(geod.geometry_length(geom) / dist), 1)
+    for n in range(num_vert + 1):
+        point = geom.interpolate(n / num_vert, normalized=True)
+        yield point.x, point.y
+
+
+def interpolate_geom(geom, dist=1):
+    if isinstance(geom, LineString):
+        return LineString([xy for xy in _interpolate_geom(geom, dist)])
