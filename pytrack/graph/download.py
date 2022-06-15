@@ -2,6 +2,16 @@ import requests
 
 
 def get_filters(network_type='drive'):
+    """ Get the filters with which to interrogate the OpenStreetMao API service.
+    Parameters
+    ----------
+    network_type: str, optional, default: 'drive'
+        Type of street network to obtain.
+    Returns
+    -------
+    osm_filters: str
+        Filters identifying the type of road network to be obtained
+    """
     osm_filters = dict()
 
     osm_filters['drive'] = ('["highway"]["area"!~"yes"]["access"!~"private"]'
@@ -13,6 +23,18 @@ def get_filters(network_type='drive'):
 
 
 def osm_download(bbox, network_type=None):
+    """ Get the OpenStreetMap response.
+    Parameters
+    ----------
+    bbox: tuple
+        bounding box within N, S, E, W coordinates.
+    network_type: str or None, optional, default: None
+        Type of street network to obtain.
+    Returns
+    -------
+    response: json
+        Response of the OpenStreetMao API service.
+    """
     # TODO: add network_type statement
     north, south, west, east = bbox
 
