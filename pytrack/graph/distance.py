@@ -61,7 +61,7 @@ def enlarge_bbox(north, south, west, east, dist):
         Eastern longitude of bounding box.
 
     dist: float
-        Distance indicating how much to expand the bounding box.
+        Distance in meters indicating how much to expand the bounding box.
 
     Returns
     ----------
@@ -91,7 +91,7 @@ def add_edge_lengths(G, precision=3):
     Returns
     ----------
     G: networkx.MultiDiGraph
-        Road network graph.
+        Street network graph.
     """
     uvk = tuple(G.edges)
 
@@ -118,7 +118,7 @@ def interpolate_graph(G, dist=1):
     Returns
     ----------
     G: networkx.MultiDiGraph
-        Road network graph.
+        Street network graph.
     """
     G = G.copy()
 
