@@ -10,6 +10,5 @@ Examples
    :maxdepth: 2
    :caption: Contents:
 
-
    ../notebooks/extract_graph
    ../notebooks/map-matching
