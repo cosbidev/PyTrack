@@ -15,7 +15,7 @@ mpmatching
    :undoc-members:
    :show-inheritance:
 
-momatching_utils
+mpmatching_utils
 -------------
 .. automodule:: pytrack.matching.candidate
    :members:
