@@ -17,7 +17,7 @@ PyTrack can serve the intelligent transport research, e.g. to reconstruct the vi
 
    1_gettingStarted.rst
    API/index.rst
-   Examples/
+   Examples/index.rst
 
 
 Indices and tables
