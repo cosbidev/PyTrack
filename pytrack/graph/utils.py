@@ -5,9 +5,17 @@ from shapely.geometry import LineString, Point
 
 
 def get_unique_number(lon, lat):
-    """
-    ciao
-
+    """ Assigns a unique identifier to a geographical coordinate.
+    Parameters
+    ----------
+    lon: float
+        Longitude of the point
+    lat: float
+        Latitude of the point
+    Returns
+    -------
+    val: float
+        Unique identifier.
     """
     if isinstance(lat, str):
         lat_double = float(lat)
@@ -30,6 +38,27 @@ def get_unique_number(lon, lat):
 
 
 def graph_to_gdfs(G, nodes=True, edges=True, node_geometry=True, edge_geometry=True):
+    """ Convert a networkx.MultiDiGraph to node and/or edge pandas DataFrame.
+
+    Parameters
+    ----------
+    G: networkx.MultiDiGraph
+        Street network graph.
+    nodes: bool, optional, default: True
+        Whether to extract graph nodes.
+    edges: bool, optional, default: True
+        Whether to extract graph edges.
+    node_geometry: bool, optional, default: True
+        Whether to compute graph node geometries.
+    edge_geometry: bool, optional, default: True
+        Whether to extract graph edge geometries.
+    Returns
+    -------
+    gdf_nodes: pandas.DataFrame
+        Dataframe collecting graph nodes.
+    gdf_edges: pandas.DataFrame
+        Dataframe collecting graph edges
+    """
     crs = G.graph["crs"]
 
     if nodes:
