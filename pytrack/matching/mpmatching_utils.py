@@ -12,6 +12,18 @@ BETA = 20
 
 # A gaussian distribution
 def emission_prob(u):
+    """ Compute emission probability of a node
+
+    Parameters
+    ----------
+    u: dict
+        Node of the graph.
+
+    Returns
+    -------
+    ret: float
+        Emission probability of a node.
+    """
     if u.great_dist:
         c = 1 / (SIGMA_Z * math.sqrt(2 * math.pi))
         return c * math.exp(-(u.great_dist / SIGMA_Z) ** 2)
@@ -21,6 +33,22 @@ def emission_prob(u):
 
 # A empirical distribution
 def transition_prob(G, u, v):
+    """ Compute transition probability between node u and v.
+
+    Parameters
+    ----------
+    G: networkx.MultiDiGraph
+        Road network graph.
+    u: dict
+        Starting node of the graph.
+    v: dict
+        Target node of the graph.
+
+    Returns
+    -------
+    ret: float
+        Transition probability between node u and v.
+    """
     c = 1 / BETA
 
     if u.great_dist and v.great_dist:
@@ -33,6 +61,18 @@ def transition_prob(G, u, v):
 
 
 def create_trellis(results):
+    """ Create a Trellis graph.
+
+    Parameters
+    ----------
+    results: dict
+        Output of ``candidate.get_candidates`` method.
+    Returns
+    -------
+    G: networkx.DiGraph
+        A directed acyclic Trellis graph.
+    """
+
     G = nx.DiGraph()
 
     prev_nodes = ["start"]
@@ -57,6 +97,21 @@ def create_trellis(results):
 
 
 def create_path(G, trellis, predecessor):
+    """ Create the path that best matches the actual GPS data.
+
+    Parameters
+    ----------
+    G: networkx.MultiDiGraph
+        Road network graph.
+    trellis: networkx.DiGraph
+        A directed acyclic graph.
+    predecessor: dict
+        Predecessor for each node.
+    Returns
+    -------
+    path_elab: list
+        list of node IDs.
+    """
     u, v = list(zip(*[(u, v) for v, u in predecessor.items()][2:]))
     path = [(u, v) for u, v in zip(u, u[1:])]
 
