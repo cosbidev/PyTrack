@@ -107,7 +107,18 @@ class Map(folium.Map):
         super().__init__(location, width, height, left, top, position, tiles, attr, min_zoom, max_zoom, zoom_start,
                          min_lat, max_lat, min_lon, max_lon, max_bounds, crs, control_scale, prefer_canvas, no_touch,
                          disable_3d, png_enabled, zoom_control, **kwargs)
+        self.tiles = tiles
         folium.LatLngPopup().add_to(self)
+
+    def _render_reset(self):
+        for key in list(self._children.keys()):
+            if key.startswith('cartodbpositron') or key.startswith('lat_lng_popup'):
+                self._children.pop(key)
+        children = self._children
+        self.__init__(self.location, tiles=self.tiles)
+        self.options = self.options
+        for k, v in children.items():
+            self.add_child(v)
 
     def add_graph(self, G, plot_nodes=False, edge_color="#3388ff", edge_width=3,
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
@@ -208,8 +219,9 @@ class Map(folium.Map):
 
         del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
         self.add_child(folium.LayerControl())
+        self._render_reset()
 
-    def draw_path(self, G, trellis, predecessor):
+    def draw_path(self, G, trellis, predecessor, path_name="Matched path"):
         """ Draw the map-matched path
 
         Parameters
@@ -222,7 +234,7 @@ class Map(folium.Map):
             Predecessors' dictionary computed with ``pytrack.matching.mpmatching.viterbi_search`` method
         """
 
-        fg_matched = folium.FeatureGroup(name='Matched path', show=True, control=True)
+        fg_matched = folium.FeatureGroup(name=path_name, show=True, control=True)
         self.add_child(fg_matched)
 
         path_elab = mpmatching_utils.create_path(G, trellis, predecessor)
@@ -237,6 +249,7 @@ class Map(folium.Map):
 
         del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
         self.add_child(folium.LayerControl())
+        self._render_reset()
 
 
 def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs):
