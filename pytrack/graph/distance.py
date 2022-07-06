@@ -9,6 +9,30 @@ geod = Geod(ellps="WGS84")
 EARTH_RADIUS_M = 6_371_009  # distance in meters
 
 
+def get_bearing(lat1, lon1, lat2, lon2):
+    """ Get bearing between two points.
+
+    Parameters
+    ----------
+    lat1: float
+        Latitude of the first point specified in decimal degrees
+    lon1: float
+        Longitude of the first point specified in decimal degrees
+    lat2: float
+        Latitude of the second point specified in decimal degrees
+    lon2: float
+        Longitude of the second point specified in decimal degrees
+
+    Returns
+    ----------
+    bearing: float
+        Bearing between two points.
+    """
+
+    bearing, _, _ = geod.inv(lon1, lat1, lon2, lat2)
+    return bearing
+
+
 def haversine_dist(lat1, lon1, lat2, lon2, earth_radius=EARTH_RADIUS_M):
     """ Calculate the great circle distance between two points on the earth (specified in decimal degrees)
 
