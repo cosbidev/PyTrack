@@ -1,3 +1,5 @@
+import copy
+
 import numpy as np
 import pandas as pd
 from sklearn.neighbors import BallTree
@@ -15,7 +17,7 @@ class Candidate:
     edge_osmid: str
         OSM edge ID.
     obs: tuple
-        Coordinate of actual gps points.
+        Coordinate of actual GPS points.
     great_dist: float
         Distance between candidate and actual GPS point.
     coord: tuple
@@ -107,7 +109,8 @@ def get_candidates(G, points, interp_dist=1, closest=True, radius=10):
 
 
 def elab_candidate_results(results, predecessor):
-    """ Elaborate results of ``candidate.get_candidates`` method.
+    """ Elaborate results of ``candidate.get_candidates`` method. It selects which candidate best matches the actual
+    GPS points.
 
     Parameters
     ----------
@@ -120,7 +123,7 @@ def elab_candidate_results(results, predecessor):
     results: dict
         Elaborated results.
     """
-    results = results.copy()
+    results = copy.deepcopy(results)
     for key in list(results.keys())[:-1]:
         win_cand_idx = int(predecessor[str(key + 1)].split("_")[1])
         results[key]["candidate_type"][win_cand_idx] = True
