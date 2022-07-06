@@ -1,7 +1,11 @@
+from . import mpmatching
+
 class Matcher:
-    def __init__(self, G):
-        self.G = G
-        pass
+    def __init__(self, G, trellis):
+        self.G
+        self.trellis
 
     def match(self):
-        pass
+        path_prob, predecessor = mpmatching.viterbi_search(self.G_interp, self.trellis, "start", "target")
+
+        return results
