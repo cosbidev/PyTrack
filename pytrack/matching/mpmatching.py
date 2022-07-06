@@ -3,7 +3,8 @@ from collections import deque
 from . import mpmatching_utils
 
 
-def viterbi_search(G, trellis, start="start", target="target"):
+def viterbi_search(G, trellis, start="start", target="target", beta=mpmatching_utils.BETA,
+                   sigma=mpmatching_utils.SIGMA_Z):
     """ Function to compute viterbi search and perform Hidden-Markov Model map-matching.
 
     Parameters
@@ -15,6 +16,13 @@ def viterbi_search(G, trellis, start="start", target="target"):
         Starting node.
     target: str, optional, default: "target"
         Target node.
+    beta: float
+        This describes the difference between route distances and great circle distances. See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf
+        for a more detailed description of its calculation.
+
+    sigma: float
+        It is an estimate of the magnitude of the GPS error. See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf
+        for a more detailed description of its calculation.
 
     Returns
     -------
@@ -22,6 +30,11 @@ def viterbi_search(G, trellis, start="start", target="target"):
         Joint probability for each node.
     predecessor: dict
         Predecessor for each node.
+
+    Notes
+    -----
+    See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf for a more detailed description of this
+    method.
     """
 
     # Initialize joint probability for each node
@@ -32,7 +45,7 @@ def viterbi_search(G, trellis, start="start", target="target"):
     queue = deque()
 
     queue.append(start)
-    joint_prob[start] = mpmatching_utils.emission_prob(trellis.nodes[start]["candidate"])
+    joint_prob[start] = mpmatching_utils.emission_prob(trellis.nodes[start]["candidate"], sigma)
     predecessor[start] = None
 
     while queue:
@@ -45,8 +58,9 @@ def viterbi_search(G, trellis, start="start", target="target"):
         for v_name in trellis.successors(u_name):
             v = trellis.nodes[v_name]["candidate"]
 
-            new_prob = joint_prob[u_name] * mpmatching_utils.transition_prob(G, u, v) * mpmatching_utils.emission_prob(
-                v)
+            new_prob = joint_prob[u_name] * mpmatching_utils.transition_prob(G, u, v, beta) * \
+                mpmatching_utils.emission_prob(v, sigma)
+
             if joint_prob[v_name] < new_prob:
                 joint_prob[v_name] = new_prob
                 predecessor[v_name.split("_")[0]] = u_name
