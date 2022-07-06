@@ -153,3 +153,4 @@ cython_debug/
 #.idea/
 /cache/
 examples/~$dataset.xlsx
+.idea/PyTrack.iml
