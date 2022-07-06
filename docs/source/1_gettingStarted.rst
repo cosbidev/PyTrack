@@ -17,4 +17,4 @@ or via *conda*:
     conda install pytrack
 
 .. warning::
-    for mac M1 users, it is recommended to use conda in order to be able to install all dependencies. In particular, the *pydot* library can be installed via conda.
+    for mac M1 users, it is recommended to use conda in order to be able to install all dependencies. In particular, the *pyproj* library can be installed via conda.
