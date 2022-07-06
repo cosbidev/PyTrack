@@ -232,6 +232,8 @@ class Map(folium.Map):
             Trellis DAG graph created with ``pytrack.matching.mpmatching_utils.create_trellis`` method
         predecessor: dict
             Predecessors' dictionary computed with ``pytrack.matching.mpmatching.viterbi_search`` method
+        path_name: str
+            Name of the path to be drawn
         """
 
         fg_matched = folium.FeatureGroup(name=path_name, show=True, control=True)
