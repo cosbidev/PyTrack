@@ -9,4 +9,4 @@ scikit-learn~=1.1.1
 matplotlib~=3.5.2
 setuptools~=63.1.0
 pydot~=1.2.4
-graphviz~=3.0.0
+graphviz
