@@ -2,6 +2,7 @@ import itertools
 import math
 
 import networkx as nx
+from shapely.geometry import LineString
 
 from pytrack.graph import distance
 from pytrack.matching import candidate
@@ -11,13 +12,16 @@ BETA = 20
 
 
 # A gaussian distribution
-def emission_prob(u):
+def emission_prob(u, sigma=SIGMA_Z):
     """ Compute emission probability of a node
 
     Parameters
     ----------
     u: dict
         Node of the graph.
+    sigma: float
+        It is an estimate of the magnitude of the GPS error. See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf
+        for a more detailed description of its calculation.
 
     Returns
     -------
@@ -25,14 +29,14 @@ def emission_prob(u):
         Emission probability of a node.
     """
     if u.great_dist:
-        c = 1 / (SIGMA_Z * math.sqrt(2 * math.pi))
-        return c * math.exp(-(u.great_dist / SIGMA_Z) ** 2)
+        c = 1 / (sigma * math.sqrt(2 * math.pi))
+        return c * math.exp(-(u.great_dist / sigma) ** 2)
     else:
         return 1
 
 
 # A empirical distribution
-def transition_prob(G, u, v):
+def transition_prob(G, u, v, beta=BETA):
     """ Compute transition probability between node u and v.
 
     Parameters
@@ -43,6 +47,9 @@ def transition_prob(G, u, v):
         Starting node of the graph.
     v: dict
         Target node of the graph.
+    beta: float
+        This describes the difference between route distances and great circle distances. See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf
+        for a more detailed description of its calculation.
 
     Returns
     -------
@@ -120,3 +127,27 @@ def create_path(G, trellis, predecessor):
                                                                     weight='length')]
     path_elab = [k for k, g in itertools.groupby(path_elab)]
     return path_elab
+
+
+def create_matched_path(G, trellis, predecessor):
+    """ Create the path that best matches the actual GPS points. Route created based on results obtained from ``pmatching_utils.viterbi_search`` and ``mpmatching_utils.create_trellis`` methods.
+
+    Parameters
+    ----------
+    G: networkx.MultiDiGraph
+        Street network graph used to create trellis graph.
+    trellis: networkx.DiGraph
+        A directed acyclic Trellis graph.
+    predecessor: dict
+        Predecessor for each node.
+
+    Returns
+    -------
+    node_ids: list
+        List of ids of the nodes that compose the path.
+    path_coords: list
+        List of nodes' coordinates, in the form of tuple (lat, lon), composing the path.
+    """
+    node_ids = create_path(G, trellis, predecessor)
+    path_coords = [(lat, lng) for lng, lat in LineString([G.nodes[node]["geometry"] for node in node_ids]).coords]
+    return node_ids, path_coords
