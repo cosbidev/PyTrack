@@ -155,3 +155,4 @@ cython_debug/
 examples/~$dataset.xlsx
 .idea/PyTrack.iml
 .idea/PyTrack.iml
+pytrack/meta.yaml
