@@ -1,11 +1,8 @@
-from . import mpmatching
-
 class Matcher:
-    def __init__(self, G, trellis):
-        self.G
-        self.trellis
+    """ Skeleton parent class to perform the matching operation.
+    """
+    def __init__(self, G):
+        self.G = G
 
-    def match(self):
-        path_prob, predecessor = mpmatching.viterbi_search(self.G_interp, self.trellis, "start", "target")
-
-        return results
+    def match(self, points):
+        pass
