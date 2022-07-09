@@ -5,6 +5,8 @@ from pathlib import Path
 import cv2
 import requests
 
+from pytrack.analytics import plugins
+
 PREV_PAN_ID = None
 
 
@@ -102,7 +104,7 @@ def extract_streetview_pic(point, api_key, size="640x640", heading=90, pitch=-10
     return pic, meta
 
 
-def save_streetview(pic, meta, folder_path):
+def save_streetview(pic, meta, folder_path, model=None):
     """ Save streetview pic and metadata in the desired path.
 
     Parameters
@@ -120,6 +122,10 @@ def save_streetview(pic, meta, folder_path):
 
     with open(os.path.join(folder_path, 'pic.png'), 'wb') as file:
         file.write(pic)
+
+    if isinstance(model, plugins.Segmenter):
+        with open(os.path.join(folder_path, 'pic_seg.png'), 'wb') as file:
+            file.write(model.run(pic))
 
     with open(os.path.join(folder_path, 'metadata.json'), 'w+') as out_file:
         json.dump(meta, out_file)
