@@ -51,7 +51,7 @@ def haversine_dist(lat1, lon1, lat2, lon2, earth_radius=EARTH_RADIUS_M):
         Earth's radius
     Returns
     ----------
-    dists: float
+    dist: float
         Distance in units of earth_radius
     """
     # convert decimal degrees to radians 
