@@ -7,6 +7,12 @@ candidate
    :members:
    :undoc-members:
 
+cleaning
+-------------
+.. automodule:: pytrack.matching.cleaning
+   :members:
+   :undoc-members:
+
 matcher
 -------------
 .. automodule:: pytrack.matching.matcher
