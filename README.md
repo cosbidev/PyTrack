@@ -60,4 +60,4 @@ If you use PyTrack in your work, please cite the [journal paper]().
 -->
 
 ## License
-PyTrack is distributed under a [BSD-3-Clause-Clear Licence]().
+PyTrack is distributed under a [BSD-3-Clause-Clear Licence](https://github.com/cosbidev/PyTrack/blob/main/LICENSE).
