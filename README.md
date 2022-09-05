@@ -54,8 +54,11 @@ To see the map-matching feature of PyTrack in action please go to [map-matching 
 </p>
 
 ### Video reconstruction of the itinerary
+<p align="center">
+    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"> <img width="1000" src="https://imgur.com/M9Eche3.gif" alt="video_track"></a>
+    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"> <img width="1000" src="https://imgur.com/M9Eche3.gif" alt="video_track"></a>
+</p>
 
-[![Video Track](https://imgur.com/M9Eche3.gif)](https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html)
 
 
 ## Contributing to PyTrack
