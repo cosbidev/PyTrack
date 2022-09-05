@@ -59,8 +59,11 @@ To see the map-matching feature of PyTrack in action please go to [map-matching 
     <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html#"> <img width="1000" src="https://imgur.com/H4WfgPH.gif" alt="map-matching"></a>
 </p>
 
+
+<a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"><img src="https://imgur.com/H4WfgPH.gif" alt="video_track" style="width:520;height:520;"></a>
+
 <p align="center">
-    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/segmentation_video_path.html#"> <img width="1000" src="https://imgur.com/U453bpF.gif" alt="map-matching"></a>
+    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/segmentation_video_path.html#"> <img width="1000" src="https://imgur.com/U453bpF.gif" alt="video_seg_trck"></a>
 </p>
 
 
