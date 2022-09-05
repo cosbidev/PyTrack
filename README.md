@@ -57,7 +57,7 @@ To see the map-matching feature of PyTrack in action please go to [map-matching 
 
 [![Video Track](https://imgur.com/H4WfgPH.gif)](https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html)
 
-
+![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
 
 
 ## Contributing to PyTrack
