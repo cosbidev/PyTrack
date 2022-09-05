@@ -13,3 +13,4 @@ Examples
    ../notebooks/extract_graph
    ../notebooks/map-matching
    ../notebooks/create_video_path
+   ../notebooks/segmentation_video_path
