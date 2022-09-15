@@ -8,7 +8,27 @@ from pytrack.graph import distance
 from pytrack.matching import candidate
 
 SIGMA_Z = 4.07
-BETA = 20
+BETA = 3
+
+
+def _emission_prob(dist, sigma=SIGMA_Z):
+    """ Compute emission probability of a node
+
+    Parameters
+    ----------
+    dist: float
+        Distance between a real GPS point and a candidate node.
+    sigma: float, optional, default: SIGMA_Z
+        It is an estimate of the magnitude of the GPS error. See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf
+        for a more detailed description of its calculation.
+
+    Returns
+    -------
+    ret: float
+        Emission probability of a node.
+    """
+    c = 1 / (sigma * math.sqrt(2 * math.pi))
+    return c * math.exp(-(dist / sigma) ** 2)
 
 
 # A gaussian distribution
@@ -17,9 +37,9 @@ def emission_prob(u, sigma=SIGMA_Z):
 
     Parameters
     ----------
-    u: dict
+    u: pytrack.matching.Candidate
         Node of the graph.
-    sigma: float
+    sigma: float, optional, default: SIGMA_Z
         It is an estimate of the magnitude of the GPS error. See https://www.ismll.uni-hildesheim.de/lehre/semSpatial-10s/script/6.pdf
         for a more detailed description of its calculation.
 
@@ -56,13 +76,13 @@ def transition_prob(G, u, v, beta=BETA):
     ret: float
         Transition probability between node u and v.
     """
-    c = 1 / BETA
+    c = 1 / beta
 
     if u.great_dist and v.great_dist:
         delta = abs(
             nx.shortest_path_length(G, u.node_id, v.node_id, weight="length", method='dijkstra')
             - distance.haversine_dist(*u.coord, *v.coord))
-        return c * math.exp(-delta / BETA) * 1e5
+        return c * math.exp(-delta / beta)
     else:
         return 1
 

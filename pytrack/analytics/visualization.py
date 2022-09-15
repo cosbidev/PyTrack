@@ -211,11 +211,10 @@ class Map(folium.Map):
                 popup = f"coord: {cand} \n edge_osmid: {label}"
                 if cand_type:
                     folium.Circle(location=cand, popup=popup, radius=2, color="yellow", fill=True,
-                                  fill_opacity=1).add_to(
-                        fg_cands)
+                                  fill_opacity=1).add_to(fg_cands)
                 else:
-                    folium.Circle(location=cand, popup=popup, radius=1, color="red", fill=True, fill_opacity=1).add_to(
-                        fg_cands)
+                    folium.Circle(location=cand, popup=popup, radius=1, color="orange", fill=True,
+                                  fill_opacity=1).add_to(fg_cands)
 
         del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
         self.add_child(folium.LayerControl())

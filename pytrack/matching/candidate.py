@@ -105,6 +105,12 @@ def get_candidates(G, points, interp_dist=1, closest=True, radius=10):
                        "candidate_type": np.full(len(nodes.index[idx]), False),
                        "dists": list(dist)} for i, (point, idx, dist) in enumerate(zip(points, idxs, dists))}
 
+    no_cands = [node_id for node_id, cand in results.items() if not cand["candidates"]]
+
+    if no_cands:
+        for cand in no_cands:
+            del results[cand]
+        print(f"A total of {len(no_cands)} points has no candidates: {*no_cands,}")
     return G, results
 
 

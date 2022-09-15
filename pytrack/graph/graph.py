@@ -102,7 +102,7 @@ def _simplification(G, response_json):
 
         junction = [False, False]
         if is_oneway:
-            junction[1:1] = [True if G.degree[node] > 3 else False for node in nodes[1:-1]]
+            junction[1:1] = [True if G.degree[node] > 2 else False for node in nodes[1:-1]]  # Changed >3 to >2 V2.0.4
         else:
             junction[1:1] = [True if G.degree[node] > 4 else False for node in nodes[1:-1]]
 
@@ -259,7 +259,7 @@ def _oneway_path_values(path):
     ret: dict
         Indicates whether an OSM path is oneway.
     """
-    return {path[key] for key in path.keys() if key.startswith("oneway") and path[key] == "no"}
+    return {path[key] for key in path.keys() if key.startswith("oneway")}  # Removed 'and path[key] == "no"' v2.0.4
 
 
 def _is_oneway(path, bidirectional):
