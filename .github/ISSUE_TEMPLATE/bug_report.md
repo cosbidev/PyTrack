@@ -10,65 +10,65 @@ assignees: ''
 Thank you for taking the time to file a bug report. Before creating a new issue, please make sure to take a few minutes to check the issue tracker for existing issues about the bug.
 
 body:
-  - type: checkboxes
-    id: checks
-    attributes:
-      label: PyTrack version checks
-      options:
-        - label: >
-            I have checked that this issue has not already been reported.
-          required: true
-        - label: >
-            I have confirmed this bug exists on the
-            latest version of PyTrack.
-          required: true
-        - label: >
-            I have confirmed this bug exists on the main branch of PyTrack.
+- type: checkboxes
+  id: checks
+  attributes:
+    label: PyTrack version checks
+    options:
+      - label: >
+          I have checked that this issue has not already been reported.
+        required: true
+      - label: >
+          I have confirmed this bug exists on the
+          latest version of PyTrack.
+        required: true
+      - label: >
+          I have confirmed this bug exists on the main branch of PyTrack.
 
-  - type: textarea
-    attributes: 
-      label: "Issue Description"
-    validations:
-      required: true
+- type: textarea
+  attributes: 
+    label: "Issue Description"
+  validations:
+    required: true
 
-  - type: textarea
-    attributes:
-      label: "Reproducible Example"
-      description: >
-        A short code example that reproduces the problem/missing feature. It
-        should be self-contained, i.e., can be copy-pasted into the Python
-        interpreter or run as-is via `python myproblem.py`.
-      placeholder: |
-        import pytrack
-        << your code here >>
-      render: python
-    validations:
-      required: true
+- type: textarea
+  attributes:
+    label: "Reproducible Example"
+    description: >
+      A short code example that reproduces the problem/missing feature. It
+      should be self-contained, i.e., can be copy-pasted into the Python
+      interpreter or run as-is via `python myproblem.py`.
+    placeholder: |
+      import pytrack
+      << your code here >>
+    render: python
+  validations:
+    required: true
 
-  - type: textarea
-    attributes:
-      label: "Error Message"
-      description: >
-        Please include full error message, if any.
-      placeholder: |
-        << Full traceback starting from `Traceback: ...` >>
-      render: shell
-    validations:
-      required: true
+- type: textarea
+  attributes:
+    label: "Error Message"
+    description: >
+      Please include full error message, if any.
+    placeholder: |
+      << Full traceback starting from `Traceback: ...` >>
+    render: shell
+  validations:
+    required: true
 
-  - type: textarea
-    attributes:
-      label: "PyTrack/Python version information"
-      description: Report the version of your environment (Python and PyTrack) for reproducibility.
-    validations:
-      required: true
+- type: textarea
+  attributes:
+    label: "PyTrack/Python version information"
+    description: Report the version of your environment (Python and PyTrack) for reproducibility.
+  validations:
+    required: true
 
-  - type: textarea
-    attributes:
-      label: "Additional Context"
-      description: |
-        Add any other context about the problem here.
-      placeholder: |
-        << your explanation here >>
-    validations:
-      required: false
+- type: textarea
+  attributes:
+    label: "Additional Context"
+    description: |
+      Add any other context about the problem here.
+    placeholder: |
+      << your explanation here >>
+  validations:
+    required: false
