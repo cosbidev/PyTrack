@@ -1,15 +1,16 @@
----
 name: Bug report
-about: Report incorrect behavior in the PyTrack library.
+description: Report incorrect behavior in the PyTrack library.
 title: 'BUG: <Please write a comprehensive title after the ''BUG: '' prefix>'
 labels: bug
-assignees: ''
-
----
-
-Thank you for taking the time to file a bug report. Before creating a new issue, please make sure to take a few minutes to check the issue tracker for existing issues about the bug.
 
 body:
+- type: markdown
+  attributes:
+    value: >
+      Thank you for taking the time to file a bug report. 
+      Before creating a new issue, please make sure to take 
+      a few minutes to check the issue tracker for existing issues about the bug.
+
 - type: checkboxes
   id: checks
   attributes:
