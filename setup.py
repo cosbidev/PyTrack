@@ -2,12 +2,12 @@ import setuptools
 import os
 
 
-def strip_comments(l):
-    return l.split('#', 1)[0].strip()
+def strip_comments(line):
+    return line.split('#', 1)[0].strip()
 
 
 def reqs(*f):
-    return list(filter(None, [strip_comments(l) for l in open(
+    return list(filter(None, [strip_comments(line) for line in open(
         os.path.join(os.getcwd(), *f)).readlines()]))
 
 
@@ -16,7 +16,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name='PyTrack-lib',
-    version='2.0.4',
+    version='2.0.5',
     packages=setuptools.find_packages(),
     # namespace_packages=['pytrack'],
     url='https://github.com/cosbidev/PyTrack',
