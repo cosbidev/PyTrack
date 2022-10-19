@@ -63,7 +63,11 @@ def get_candidates(G, points, interp_dist=1, closest=True, radius=10):
     G = G.copy()
 
     if interp_dist:
-        G = distance.interpolate_graph(G, dist=interp_dist)
+        if G.graph["geometry"]:
+            G = distance.interpolate_graph(G, dist=interp_dist)
+        else:
+            _ = utils.graph_to_gdfs(G, nodes=False)
+            G = distance.interpolate_graph(G, dist=interp_dist)
 
     geoms = utils.graph_to_gdfs(G, nodes=False).set_index(["u", "v"])[["osmid", "geometry"]]
 

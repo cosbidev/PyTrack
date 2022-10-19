@@ -132,21 +132,21 @@ class Map(folium.Map):
         plot_nodes: bool, optional, default: False
             If true, it will show the vertices of the graph.
         edge_color: str, optional, default: "#3388ff"
-            Colour of graph edges
+            Colour of graph edges.
         edge_width: float, optional, default: 3
-            Width of graph edges
+            Width of graph edges.
         edge_opacity: float, optional, default: 1
-            Opacity of graph edges
+            Opacity of graph edges.
         radius: float, optional, default: 1.7
-            Radius of graph vertices
+            Radius of graph vertices.
         node_color: str, optional, default: "red"
-            Colour of graph vertices
+            Colour of graph vertices.
         fill: bool, optional, default: True
             Whether to fill the nodes with color. Set it to false to disable filling on the nodes.
         fill_color: str or NoneType, default: None
             Fill color. Defaults to the value of the color option.
         fill_opacity: float, optional, default: 1
-            Fill opacity
+            Fill opacity.
         """
         edge_attr = dict()
         edge_attr["color"] = edge_color
@@ -156,15 +156,10 @@ class Map(folium.Map):
         node_attr = dict()
         node_attr["color"] = node_color
         node_attr["fill"] = fill
-
-        if not fill_color:
-            node_attr["fill_color"] = fill_color
-        else:
-            node_attr["fill_color"] = fill_color
+        node_attr["fill_color"] = fill_color
         node_attr["fill_opacity"] = fill_opacity
 
         nodes, edges = utils.graph_to_gdfs(G)
-        edges = utils.graph_to_gdfs(G, nodes=False)
 
         fg_graph = folium.FeatureGroup(name='Graph edges', show=True)
         self.add_child(fg_graph)
@@ -182,7 +177,9 @@ class Map(folium.Map):
 
         folium.LayerControl().add_to(self)
 
-    def draw_candidates(self, candidates, radius):
+    def draw_candidates(self, candidates, radius, point_radius=1, point_color="black", point_fill=True,
+                        point_fill_opacity=1, area_weight=1, area_color="black", area_fill=True, area_fill_opacity=0.2,
+                        cand_radius=1, cand_color="orange", cand_fill=True, cand_fill_opacity=1):
         """ Draw the candidate nodes of the HMM matcher
 
         Parameters
@@ -190,20 +187,46 @@ class Map(folium.Map):
         candidates: dict
             Candidates' dictionary computed via ``pytrack.matching.candidate.get_candidates`` method
         radius: float
-            Candidate search radius
+            Candidate search radius.
+        point_radius: float, optional, default: 1
+            Radius of the actual GPS points.
+        point_color:  str, optional, default: "black"
+            Colour of actual GPS points.
+        point_fill: bool, optional, default: True
+            Whether to fill the actual GPS points with color. Set it to false to disable filling on the nodes.
+        point_fill_opacity: float, optional, default: 1
+            Fill opacity of the actual GPS points.
+        area_weight: float, optional, default: 1
+            Stroke width in pixels of the search area.
+        area_color:  str, optional, default: "black"
+            Colour of search area.
+        area_fill: bool, optional, default: True
+            Whether to fill the search area with color. Set it to false to disable filling on the nodes.
+        area_fill_opacity: float, optional, default: 0.2
+            Fill opacity of the search area.
+        cand_radius: float, optional, default: 2
+            Radius of the candidate points.
+        cand_color:  str, optional, default: "orange"
+            Colour of candidate points.
+        cand_fill: bool, optional, default: True
+            Whether to fill the candidate points with color. Set it to false to disable filling on the nodes.
+        cand_fill_opacity: float, optional, default: 1
+            Fill opacity of the candidate GPS points.
         """
         fg_cands = folium.FeatureGroup(name='Candidates', show=True, control=True)
         fg_gps = folium.FeatureGroup(name="Actual GPS points", show=True, control=True)
+        fg_area = folium.FeatureGroup(name="Candidate search area", show=True, control=True)
         self.add_child(fg_cands)
         self.add_child(fg_gps)
+        self.add_child(fg_area)
 
         for i, obs in enumerate(candidates.keys()):
-            folium.Circle(location=candidates[obs]["observation"], radius=radius, weight=1, color="black", fill=True,
-                          fill_opacity=0.2).add_to(fg_gps)
+            folium.Circle(location=candidates[obs]["observation"], radius=radius, weight=area_weight, color=area_color,
+                          fill=area_fill, fill_opacity=area_fill_opacity).add_to(fg_area)
             popup = f'{i}-th point \n Latitude: {candidates[obs]["observation"][0]}\n Longitude: ' \
                     f'{candidates[obs]["observation"][1]}'
-            folium.Circle(location=candidates[obs]["observation"], popup=popup, radius=1, color="black",
-                          fill=True, fill_opacity=1).add_to(fg_gps)
+            folium.Circle(location=candidates[obs]["observation"], popup=popup, radius=point_radius, color=point_color,
+                          fill=point_fill, point_fill_opacity=point_fill_opacity).add_to(fg_gps)
 
             # plot candidates
             for cand, label, cand_type in zip(candidates[obs]["candidates"], candidates[obs]["edge_osmid"],
@@ -213,14 +236,15 @@ class Map(folium.Map):
                     folium.Circle(location=cand, popup=popup, radius=2, color="yellow", fill=True,
                                   fill_opacity=1).add_to(fg_cands)
                 else:
-                    folium.Circle(location=cand, popup=popup, radius=1, color="orange", fill=True,
-                                  fill_opacity=1).add_to(fg_cands)
+                    folium.Circle(location=cand, popup=popup, radius=cand_radius, color=cand_color, fill=cand_fill,
+                                  fill_opacity=cand_fill_opacity).add_to(fg_cands)
 
         del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
         self.add_child(folium.LayerControl())
         self._render_reset()
 
-    def draw_path(self, G, trellis, predecessor, path_name="Matched path"):
+    def draw_path(self, G, trellis, predecessor, path_name="Matched path", path_color="green", path_weight=4,
+                  path_opacity=1):
         """ Draw the map-matched path
 
         Parameters
@@ -231,8 +255,14 @@ class Map(folium.Map):
             Trellis DAG graph created with ``pytrack.matching.mpmatching_utils.create_trellis`` method
         predecessor: dict
             Predecessors' dictionary computed with ``pytrack.matching.mpmatching.viterbi_search`` method
-        path_name: str
+        path_name: str, optional, default: "Matched path"
             Name of the path to be drawn
+        path_color: str, optional, default: "green"
+            Stroke color
+        path_weight: float, optional, default: 4
+            Stroke width in pixels
+        path_opacity: float, optional, default: 1
+            Stroke opacity
         """
 
         fg_matched = folium.FeatureGroup(name=path_name, show=True, control=True)
@@ -241,19 +271,19 @@ class Map(folium.Map):
         path_elab = mpmatching_utils.create_path(G, trellis, predecessor)
 
         edge_attr = dict()
-        edge_attr["color"] = "green"
-        edge_attr["weight"] = 4
-        edge_attr["opacity"] = 1
+        edge_attr["color"] = path_color
+        edge_attr["weight"] = path_weight
+        edge_attr["opacity"] = path_opacity
 
         edge = [(lat, lng) for lng, lat in LineString([G.nodes[node]["geometry"] for node in path_elab]).coords]
-        folium.PolyLine(locations=edge, **edge_attr, ).add_to(fg_matched)
+        folium.PolyLine(locations=edge, **edge_attr).add_to(fg_matched)
 
         del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
         self.add_child(folium.LayerControl())
         self._render_reset()
 
 
-def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs):
+def draw_trellis(T, figsize=(15, 12), dpi=300, node_size=500, font_size=8, **kwargs):
     """ Draw a trellis graph
 
     Parameters
@@ -303,11 +333,6 @@ def draw_trellis(T, figsize=None, dpi=None, node_size=500, font_size=8, **kwargs
 
     nx_kwargs = {k: v for k, v in kwargs.items() if k in valid_nx_kwargs}
     plt_kwargs = {k: v for k, v in kwargs.items() if k in valid_plt_kwargs}
-
-    if figsize is None:
-        figsize = (15, 12)
-    if dpi is None:
-        dpi = 300
 
     plt.figure(figsize=figsize, dpi=dpi, **plt_kwargs)
 
