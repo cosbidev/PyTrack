@@ -77,6 +77,8 @@ def graph_to_gdfs(G, nodes=True, edges=True, node_geometry=True, edge_geometry=T
     if edges:
         u, v, k, data = zip(*G.edges(keys=True, data=True))
         if edge_geometry:
+            G.graph["geometry"] = True
+
             longs = G.nodes(data="x")
             lats = G.nodes(data="y")
 
