@@ -4,6 +4,7 @@ from itertools import groupby
 import networkx as nx
 from shapely.geometry import Point, LineString
 
+import pytrack
 from . import distance
 from . import download
 
@@ -227,8 +228,9 @@ def create_graph(response_json):
     #  per grafo create the graph as a MultiDiGraph and set its meta-attributes
     metadata = {
         'created_date': "{:%Y-%m-%d %H:%M:%S}".format(dt.datetime.now()),
-        'created_with': f"PyTrack 1.0.0",
+        'created_with': f"PyTrack {pytrack.__version__}",
         'crs': "epsg:4326",
+        'geometry': False
     }
     G = nx.MultiDiGraph(**metadata)
 
