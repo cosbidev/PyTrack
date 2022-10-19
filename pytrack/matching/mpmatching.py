@@ -1,5 +1,5 @@
-from collections import deque
 import math
+from collections import deque
 
 from . import mpmatching_utils
 
@@ -43,6 +43,8 @@ def viterbi_search(G, trellis, start="start", target="target", beta=mpmatching_u
     for u_name in trellis.nodes():
         joint_prob[u_name] = -float('inf')
     predecessor = {}
+    predecessor_val = {}
+
     queue = deque()
 
     queue.append(start)
@@ -60,15 +62,21 @@ def viterbi_search(G, trellis, start="start", target="target", beta=mpmatching_u
             v = trellis.nodes[v_name]["candidate"]
 
             try:
-                new_prob = joint_prob[u_name] + math.log10(mpmatching_utils.transition_prob(G, u, v, beta)) + \
-                           math.log10(mpmatching_utils.emission_prob(v, sigma))
-            except Exception as e:
-                print(e)
+                new_prob = joint_prob[u_name] + math.log10(mpmatching_utils.emission_prob(v, sigma)) \
+                           + math.log10(mpmatching_utils.transition_prob(G, u, v, beta))
 
-            if joint_prob[v_name] < new_prob:
-                joint_prob[v_name] = new_prob
-                predecessor[v_name.split("_")[0]] = u_name
-            if v_name not in queue:
-                queue.append(v_name)
+                if joint_prob[v_name] < new_prob:
+                    joint_prob[v_name] = new_prob
+                    if v_name.split("_")[0] not in predecessor:
+                        predecessor[v_name.split("_")[0]] = u_name
+                        predecessor_val[v_name.split("_")[0]] = new_prob
+                    elif v_name.split("_")[0] in predecessor and predecessor_val[v_name.split("_")[0]] < new_prob:
+                        predecessor[v_name.split("_")[0]] = u_name
+                        predecessor_val[v_name.split("_")[0]] = new_prob
+                if v_name not in queue:
+                    queue.append(v_name)
+
+            except Exception as error:
+                print(error)
 
     return joint_prob[target], predecessor
