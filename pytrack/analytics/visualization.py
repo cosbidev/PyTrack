@@ -226,7 +226,7 @@ class Map(folium.Map):
             popup = f'{i}-th point \n Latitude: {candidates[obs]["observation"][0]}\n Longitude: ' \
                     f'{candidates[obs]["observation"][1]}'
             folium.Circle(location=candidates[obs]["observation"], popup=popup, radius=point_radius, color=point_color,
-                          fill=point_fill, point_fill_opacity=point_fill_opacity).add_to(fg_gps)
+                          fill=point_fill, fill_opacity=point_fill_opacity).add_to(fg_gps)
 
             # plot candidates
             for cand, label, cand_type in zip(candidates[obs]["candidates"], candidates[obs]["edge_osmid"],

@@ -139,7 +139,7 @@ def create_path(G, trellis, predecessor):
     path_elab: list
         list of node IDs.
     """
-    u, v = list(zip(*[(u, v) for v, u in predecessor.items()][2:]))
+    u, v = list(zip(*[(u, v) for v, u in predecessor.items()][::-1]))
     path = [(u, v) for u, v in zip(u, u[1:])]
 
     path_elab = [node for u, v in path for node in nx.shortest_path(G, trellis.nodes[u]["candidate"].node_id,
@@ -171,3 +171,26 @@ def create_matched_path(G, trellis, predecessor):
     node_ids = create_path(G, trellis, predecessor)
     path_coords = [(lat, lng) for lng, lat in LineString([G.nodes[node]["geometry"] for node in node_ids]).coords]
     return node_ids, path_coords
+
+
+def get_predecessor(target, predecessor):
+    """ Reconstruct predecessor dictionary of a decoded trellis DAG.
+
+    Parameters
+    ----------
+    target: str
+        Target node of the trellis DAG.
+    predecessor: dict
+        Dictionary containing the predecessors of the nodes of a decoded Trellis DAG.
+    Returns
+    -------
+    pred_elab: dict
+        Dictionary containing the predecessors of the best nodes of a decoded Trellis DAG.
+    """
+    pred_elab = {}
+    pred = predecessor[target]
+    while pred != "start":
+        pred_elab[target.split("_")[0]] = pred
+        target = pred
+        pred = predecessor[target]
+    return pred_elab
