@@ -67,16 +67,18 @@ def viterbi_search(G, trellis, start="start", target="target", beta=mpmatching_u
 
                 if joint_prob[v_name] < new_prob:
                     joint_prob[v_name] = new_prob
-                    if v_name.split("_")[0] not in predecessor:
-                        predecessor[v_name.split("_")[0]] = u_name
-                        predecessor_val[v_name.split("_")[0]] = new_prob
-                    elif v_name.split("_")[0] in predecessor and predecessor_val[v_name.split("_")[0]] < new_prob:
-                        predecessor[v_name.split("_")[0]] = u_name
-                        predecessor_val[v_name.split("_")[0]] = new_prob
+                    if v_name not in predecessor:
+                        predecessor[v_name] = u_name
+                        predecessor_val[v_name] = new_prob
+                    elif v_name in predecessor and predecessor_val[v_name] < new_prob:
+                        predecessor[v_name] = u_name
+                        predecessor_val[v_name] = new_prob
                 if v_name not in queue:
                     queue.append(v_name)
 
             except Exception as error:
                 print(error)
+
+    predecessor = mpmatching_utils.get_predecessor("target", predecessor)
 
     return joint_prob[target], predecessor
