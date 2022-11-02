@@ -19,16 +19,18 @@ PyTrack can serve the intelligent transport research, e.g. to reconstruct the vi
 
 If you use PyTrack in your work, please cite the journal article.
 
-**Citation info**: M. Tortora, E. Cordelli and P. Soda, "[PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction](https://ieeexplore.ieee.org/document/9927417/authors#authors)," in IEEE Access, 2022, doi: 10.1109/ACCESS.2022.3216565.
+**Citation info**: M. Tortora, E. Cordelli and P. Soda, "[PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction](https://ieeexplore.ieee.org/document/9927417/authors#authors)," in IEEE Access, vol. 10, pp. 112713-112720, 2022, doi: 10.1109/ACCESS.2022.3216565.
 
 ```latex
 @ARTICLE{mtpytrack,  
-    author={Tortora, Matteo and Cordelli, Ermanno and Soda, Paolo},  
-    journal={IEEE Access},   
-    title={PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction},   
-    year={2022},  
-    pages={1-1},  
-    doi={10.1109/ACCESS.2022.3216565}}
+      author={Tortora, Matteo and Cordelli, Ermanno and Soda, Paolo},
+      journal={IEEE Access}, 
+      title={PyTrack: A Map-Matching-Based Python Toolbox for Vehicle Trajectory Reconstruction}, 
+      year={2022},
+      volume={10},
+      number={},
+      pages={112713-112720},
+      doi={10.1109/ACCESS.2022.3216565}}
 ```
 
 ## Main Features
