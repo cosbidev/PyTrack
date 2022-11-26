@@ -10,7 +10,10 @@ preferred-citation:
     given-names: "Ermanno"
   - family-names: "Soda"
     given-names: "Paolo"
-  doi: "10.1109/ACCESS.2022.3216565"
   journal: "IEEE Access"
   title: "PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction"
   year: 2022
+  volume: 10
+  start: 112713 # First page number
+  end: 112720 # Last page number
+  doi: "10.1109/ACCESS.2022.3216565"
