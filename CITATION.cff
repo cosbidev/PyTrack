@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use PyTrack in your work, please cite the journal article."
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Tortora"
+    given-names: "Matteo"
+    orcid: "https://orcid.org/0000-0002-3932-7380"
+  - family-names: "Cordelli"
+    given-names: "Ermanno"
+  - family-names: "Soda"
+    given-names: "Paolo"
+  journal: "IEEE Access"
+  title: "PyTrack: a Map-Matching-based Python Toolbox for Vehicle Trajectory Reconstruction"
+  year: 2022
+  volume: 10
+  start: 112713 # First page number
+  end: 112720 # Last page number
+  doi: "10.1109/ACCESS.2022.3216565"
