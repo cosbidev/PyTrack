@@ -1,3 +1,4 @@
+import random
 from inspect import signature
 
 import folium
@@ -120,6 +121,28 @@ class Map(folium.Map):
         for k, v in children.items():
             self.add_child(v)
 
+    def _layer_control_exist(self):
+        # Check if a layer control already exists on the map
+        self.layer_control_exist = False
+        for child in self._children:
+            if child.startswith('layer_control'):
+                self.layer_control_exist = True
+                break
+
+    def _manage_layer_control(self):
+        # Check if a layer control already exists on the map
+        self._layer_control_exist()
+
+        # Add a new layer control if one doesn't exist
+        if self.layer_control_exist:
+            del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
+            self.add_child(folium.LayerControl())
+            self._render_reset()
+
+        # Add a new layer control if one doesn't exist
+        else:
+            folium.LayerControl().add_to(self)
+
     def add_graph(self, G, plot_nodes=False, edge_color="#3388ff", edge_width=3,
                   edge_opacity=1, radius=1.7, node_color="red", fill=True, fill_color=None,
                   fill_opacity=1):
@@ -175,7 +198,8 @@ class Map(folium.Map):
                 folium.Circle(location=(point.y, point.x), popup=f"osmid: {osmid}", radius=radius, **node_attr).add_to(
                     fg_point)
 
-        folium.LayerControl().add_to(self)
+        # Update layer_control if it exists, otherwise create it
+        self._manage_layer_control()
 
     def draw_candidates(self, candidates, radius, point_radius=1, point_color="black", point_fill=True,
                         point_fill_opacity=1, area_weight=1, area_color="black", area_fill=True, area_fill_opacity=0.2,
@@ -239,9 +263,8 @@ class Map(folium.Map):
                     folium.Circle(location=cand, popup=popup, radius=cand_radius, color=cand_color, fill=cand_fill,
                                   fill_opacity=cand_fill_opacity).add_to(fg_cands)
 
-        del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
-        self.add_child(folium.LayerControl())
-        self._render_reset()
+        # Update layer_control if it exists, otherwise create it
+        self._manage_layer_control()
 
     def draw_path(self, G, trellis, predecessor, path_name="Matched path", path_color="green", path_weight=4,
                   path_opacity=1):
@@ -278,9 +301,49 @@ class Map(folium.Map):
         edge = [(lat, lng) for lng, lat in LineString([G.nodes[node]["geometry"] for node in path_elab]).coords]
         folium.PolyLine(locations=edge, **edge_attr).add_to(fg_matched)
 
-        del self._children[next(k for k in self._children.keys() if k.startswith('layer_control'))]
-        self.add_child(folium.LayerControl())
-        self._render_reset()
+        # Update layer_control if it exists, otherwise create it
+        self._manage_layer_control()
+
+    def add_geojson(self, geojson_data_list, styles=None, layer_names=None):
+        """ Add a GeoJSON layer to a Folium map object.
+
+        Parameters
+        ----------
+        geojson_data_list : list of str, dict, or file
+            The list of GeoJSON data as strings, dictionaries, or files.
+        styles : list of function, optional
+            The list of style functions for each GeoJSON layer. Each function should take a 'feature' argument
+            and return a dictionary of style options. If None, a random color will be assigned to each layer.
+            Default is None.
+        layer_names : list of str, optional
+            The list of names for each GeoJSON layer. If None, each layer will be named "Layer i" where i is
+            its index in geojson_data_list. If provided, the length of layer_names must match the length of
+            geojson_data_list. Default is None.
+        """
+        # Generate a random color for each layer if no style is provided
+        if styles is None:
+            styles = [lambda feature, color=f"#{random.randint(0, 0xFFFFFF):06x}": {
+                "color": color,
+                "weight": 2,
+                "opacity": 0.8,
+                "fillColor": color,
+                "fillOpacity": 0.5
+            } for _ in geojson_data_list]
+
+        # Create a FeatureGroup to aggregate the GeoJSON layers
+        feature_group = folium.FeatureGroup(name="GeoJSON Layers")
+        self.add_child(feature_group)
+
+        # Create a GeoJSON layer for each input data and add to the map
+        for i, (geojson_data, style) in enumerate(zip(geojson_data_list, styles)):
+            folium.GeoJson(
+                geojson_data,
+                style_function=style,
+                name=layer_names[i] if layer_names is not None and i < len(layer_names) else f"Layer {i + 1}"
+            ).add_to(feature_group)
+
+        # Update layer_control if it exists, otherwise create it
+        self._manage_layer_control()
 
 
 def draw_trellis(T, figsize=(15, 12), dpi=300, node_size=500, font_size=8, **kwargs):

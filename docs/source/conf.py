@@ -24,7 +24,7 @@ copyright = '2022, Matteo Tortora'
 author = 'Matteo Tortora'
 
 # The full version, including alpha/beta/rc tags
-release = '2.0.4'
+release = f'{pytrack.__version__}'
 
 # -- General configuration ---------------------------------------------------
 
