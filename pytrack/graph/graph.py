@@ -27,7 +27,7 @@ useful_tags_way = [
 ]
 
 
-def graph_from_bbox(north, south, west, east, simplify=True, network_type='drive', buffer_dist=0):
+def graph_from_bbox(north, south, west, east, simplify=True, network_type='drive', custom_filter=None, buffer_dist=0):
     """ Create a graph from OpenStreetMap within some bounding box.
 
     Parameters
@@ -44,6 +44,8 @@ def graph_from_bbox(north, south, west, east, simplify=True, network_type='drive
         if True, simplify graph topology with the ``simplify_graph`` method.
     network_type: str, optional, default: 'drive'
         Type of street network to obtain.
+    custom_filter: str or None, optional, default: None
+        Custom filter to be used instead of the predefined ones to query the Overpass API.
     buffer_dist: float, optional, default: 0
         Distance in meters indicating how much to expand the bounding box.
     Returns
@@ -52,7 +54,7 @@ def graph_from_bbox(north, south, west, east, simplify=True, network_type='drive
         Street network graph.
     """
     bbox_buffer = distance.enlarge_bbox(north, south, west, east, buffer_dist)
-    response_json = download.osm_download(bbox_buffer, network_type=network_type)
+    response_json = download.osm_download(bbox_buffer, network_type=network_type, custom_filter=custom_filter)
     G = create_graph(response_json)
 
     if simplify:

@@ -137,7 +137,7 @@ def create_path(G, trellis, predecessor):
     Returns
     -------
     path_elab: list
-        list of node IDs.
+        List of node IDs.
     """
     u, v = list(zip(*[(u, v) for v, u in predecessor.items()][::-1]))
     path = [(u, v) for u, v in zip(u, u[1:])]
