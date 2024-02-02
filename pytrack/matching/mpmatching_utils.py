@@ -187,10 +187,22 @@ def get_predecessor(target, predecessor):
     pred_elab: dict
         Dictionary containing the predecessors of the best nodes of a decoded Trellis DAG.
     """
+    
+    """
+    2023/02/03
+    
+    the key "target" may not be in the predecessor
+    check if key in the predecessor or not before the "get" occurs  
+    """
+    
     pred_elab = {}
+    if target not in predecessor:
+        return {}
     pred = predecessor[target]
     while pred != "start":
         pred_elab[target.split("_")[0]] = pred
         target = pred
+        if target not in predecessor:
+            return {}
         pred = predecessor[target]
     return pred_elab

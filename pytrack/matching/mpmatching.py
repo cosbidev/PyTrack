@@ -79,6 +79,8 @@ def viterbi_search(G, trellis, start="start", target="target", beta=mpmatching_u
             except Exception as error:
                 print(error)
 
-    predecessor = mpmatching_utils.get_predecessor("target", predecessor)
+    # get_predecessor and viterbi_search should seperate. Decoupling!
+                     
+    #predecessor = mpmatching_utils.get_predecessor("target", predecessor)
 
     return joint_prob[target], predecessor
