@@ -70,7 +70,7 @@ To see the map-matching feature of PyTrack in action please go to [map-matching 
 
 ### Video reconstruction of the itinerary
 <p align="center">
-    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"> <img width="400" src="https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/video_reconstruction.gif" alt="video_track"></a>
+    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"> <img width="400" src="https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/video.gif" alt="video_track"></a>
     <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/segmentation_video_path.html"> <img width="400" src="https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/video_seg.gif" alt="video_seg_track"></a>
 </p>
 
