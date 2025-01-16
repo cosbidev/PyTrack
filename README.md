@@ -14,7 +14,7 @@
 [![Anaconda downloads](https://img.shields.io/conda/dn/conda-forge/pytrack?label=conda%20downloads)](https://anaconda.org/conda-forge/pytrack)
 
 ## What is it?
-**PyTrack** is a Python package that integrate the recorded GPS coordinates with data provided by the open-source OpenStreetMap (OSM). 
+**PyTrack** is a Python package that integrates the recorded GPS coordinates with data provided by the open-source OpenStreetMap (OSM). 
 PyTrack can serve the intelligent transport research, e.g. to reconstruct the video of a vehicle’s route by exploiting available data and without equipping it with camera sensors, to update the urban road network, and so on.
 
 If you use PyTrack in your work, please cite the journal article.
@@ -80,7 +80,7 @@ To see the map-matching feature of PyTrack in action please go to [map-matching 
 All contributions, bug reports, bug fixes, documentation improvements, enhancements, and ideas are welcome.
 
 ## Author
-Created by [Matteo Tortora](https://mtortora-ai.github.io) - feel free to contact me!
+Created by [Matteo Tortora](https://matteotortora.github.io) - feel free to contact me!
 
 <!---
 ## Citation
