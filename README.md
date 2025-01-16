@@ -65,7 +65,7 @@ Besides, [here](https://github.com/cosbidev/PyTrack/tree/main/examples) you can 
 To see the map-matching feature of PyTrack in action please go to [map-matching documentation](https://pytrack-lib.readthedocs.io/en/latest/notebooks/map-matching.html).
 
 <p align="center">
-    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"> <img width="1000" src="https://imgur.com/Inxho5F.png" alt="map-matching"></a>
+    <a href="https://pytrack-lib.readthedocs.io/en/latest/notebooks/create_video_path.html"> <img width="1000" src="https://raw.githubusercontent.com/cosbidev/PyTrack/main/logo/example.png" alt="map-matching"></a>
 </p>
 
 ### Video reconstruction of the itinerary
