@@ -23,7 +23,7 @@ def get_filters(network_type='drive'):
     osm_filters['bicycle'] = ('["highway"]["area"!~"yes"]["access"!~"private"]'
                               '["highway"!~"abandoned|bridleway|footway|bus_guideway|construction|corridor|elevator|'
                               'escalator|planned|platform|proposed|raceway|steps|footway"]'
-                              '["service"!~"private"]["bicycle"!~"no"])')
+                              '["service"!~"private"]["bicycle"!~"no|use_sidepath"]')
 
     osm_filters['service'] = ('["highway"]["area"!~"yes"]["access"!~"private"]["highway"!~"abandoned|bridleway|'
                               'construction|corridor|platform|cycleway|elevator|escalator|footway|path|planned|'
